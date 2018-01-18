@@ -1,6 +1,18 @@
 Bootstrap: docker
 From: ubuntu:16.04
 
+%help
+Ubuntu16.04 with root version v06.08.06
+Python packages: pip numpy matplotlib pandas ipython jupyter notebook
+Development kit: g++/gcc libqt4-dev python-dev 
+Utility kit    : git wget emacs vim
+To start your container simply try
+singularity exec THIS_CONTAINER.simg bash
+
+%labels
+Maintainer drinkingkazu
+Version ubuntu16.04-root06.08.06
+
 #------------
 # Global installation
 #------------
