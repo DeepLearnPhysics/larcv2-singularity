@@ -27,4 +27,4 @@ There are 2 tags with compiled larcv2 with ready-to-use shell environment
   * Built on `ubuntu16.04-gpu` tag
 
 # Docker images?
-Checkout our source [dockerfiles](https://github.com/DeepLearnPhysics/base_dockerfiles) and built images on [docker hub](https://hub.docker.com/u/deeplearnphysics/dashboard/).
+Checkout built images on our [docker hub](https://hub.docker.com/u/deeplearnphysics/dashboard/).
