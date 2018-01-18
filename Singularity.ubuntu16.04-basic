@@ -1,0 +1,37 @@
+Bootstrap: docker
+From: ubuntu:16.04
+
+#------------
+# Global installation
+#------------
+%environment
+    # for system
+    export XDG_RUNTIME_DIR=/tmp/$USER
+    # for ROOT
+    export ROOTSYS=/usr/local/root
+    export PATH=${ROOTSYS}/bin:${PATH}
+    export LD_LIBRARY_PATH=${ROOTSYS}/lib:${LD_LIBRARY_PATH}
+    export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
+
+%post
+    # apt-get
+    apt-get -y update
+    apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev python-dev python-pip git wget emacs vim
+
+    # ROOT    
+    wget https://root.cern.ch/download/root_v6.08.06.Linux-ubuntu16-x86_64-gcc5.4.tar.gz
+    tar -xzf root_v6.08.06.Linux-ubuntu16-x86_64-gcc5.4.tar.gz
+    rm root_v6.08.06.Linux-ubuntu16-x86_64-gcc5.4.tar.gz
+    mv root /usr/local/root
+    export ROOTSYS=/usr/local/root
+    export PATH=${ROOTSYS}/bin:${PATH}
+    export LD_LIBRARY_PATH=${ROOTSYS}/lib:${LD_LIBRARY_PATH}
+    export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
+
+    # pip
+    pip install --upgrade setuptools pip
+    pip install --upgrade numpy
+    pip install matplotlib pandas
+    pip install 'ipython<6.0'
+    pip install jupyter notebook
+
