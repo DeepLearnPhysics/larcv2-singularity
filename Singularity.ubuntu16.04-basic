@@ -2,7 +2,7 @@ Bootstrap: docker
 From: ubuntu:16.04
 
 %help
-Ubuntu16.04 with root version v06.08.06
+Ubuntu16.04 with root v06.08.06
 Python packages: pip numpy matplotlib pandas ipython jupyter notebook
 Development kit: g++/gcc libqt4-dev python-dev 
 Utility kit    : git wget emacs vim

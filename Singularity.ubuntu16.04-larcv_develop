@@ -1,5 +1,17 @@
 Bootstrap: shub
-From: DeepLearnPhysics/base_singularity:ubuntu16.04-basic
+From: DeepLearnPhysics/larcv2-singularity:ubuntu16.04-basic
+
+%help
+Ubuntu16.04 with root v06.08.06
+Python packages: pip numpy larcv matplotlib pandas ipython jupyter notebook
+Development kit: g++/gcc libqt4-dev python-dev nvcc
+Utility kit    : git wget emacs vim
+To start your container simply try
+singularity exec THIS_CONTAINER.simg bash
+
+%labels
+Maintainer drinkingkazu
+Version ubuntu16.04-root06.08.06-larcv2
 
 #------------
 # Global installation
