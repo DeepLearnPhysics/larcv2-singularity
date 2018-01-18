@@ -10,6 +10,10 @@ To run the container after the build, try
 ```
 singularity exec local.simg bash
 ```
+If you are to use "gpu" tags and want to use gpus, don't forget `--nv` option
+```
+singularity exec --nv local.simg bash
+```
 For more fun things to do, you can singularity's [Quick Start](http://singularity.lbl.gov/quickstart) guide.
 ## Tags
 There are 2 Ubuntu16.04 tags used as the base image for larcv builds.
