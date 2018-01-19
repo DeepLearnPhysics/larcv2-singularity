@@ -31,7 +31,7 @@ Version ubuntu16.04-root06.08.06-larcv2
     #export LARCV_LIBS="-L${LARCV_LIBDIR} -llarcv"
 
     # with numpy
-    #export LARCV_NUMPY=1
+    export LARCV_NUMPY=1
     export LARCV_INCLUDES="-I${LARCV_INCDIR} -I/usr/include/python2.7 -I/usr/include/x86_64-linux-gnu/python2.7"
     export LARCV_LIBS="-L/usr/lib/ -L/usr/lib/python2.7/config-x86_64-linux-gnu -L/usr/lib"
     export LARCV_LIBS="${LARCV_LIBS} -lpthread -ldl -lutil -lm -lpython2.7 -Xlinker -export-dynamic -Wl,-O1 -Wl,-Bsymbolic-functions"
