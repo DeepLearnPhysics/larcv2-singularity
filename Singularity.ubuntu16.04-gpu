@@ -1,13 +1,19 @@
 Bootstrap: docker
-From: nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
+From: nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 
 %help
-Ubuntu16.04 with root v06.08.06 cuda v8.0 cudnn6
-Python packages: pip numpy tensorflow matplotlib pandas ipython jupyter notebook
-Development kit: g++/gcc libqt4-dev python-dev nvcc
-Utility kit    : git wget emacs vim
+Ubuntu16.04 with root v06.08.06 cuda9 cudnn7
+ML/DL packages  : tensorflow keras torch sc-learn
+Sci.  packages  : numpy pandas sc-image matplotlib
+Basic python    : ipython jupyter yaml pygments six zmq wheel
+Development kit : g++/gcc cython nvcc libqt4-dev python-dev
+Utility kit     : git wget emacs vim
+
 To start your container simply try
 singularity exec THIS_CONTAINER.simg bash
+
+To use GPUs, try
+singularity exec --nv THIS_CONTAINER.simg bash
 
 %labels
 Maintainer drinkingkazu
@@ -30,6 +36,12 @@ Version ubuntu16.04-root06.08.06-gpu
     apt-get -y update
     apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev python-dev python-pip git wget emacs vim
 
+    # asciinema
+    apt-get -y install software-properties-common python-software-properties
+    apt-add-repository -y ppa:zanchey/asciinema
+    apt-get -y update
+    apt-get -y install asciinema
+
     # ROOT    
     wget https://root.cern.ch/download/root_v6.08.06.Linux-ubuntu16-x86_64-gcc5.4.tar.gz
     tar -xzf root_v6.08.06.Linux-ubuntu16-x86_64-gcc5.4.tar.gz
@@ -41,10 +53,12 @@ Version ubuntu16.04-root06.08.06-gpu
     export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
 
     # pip
-    pip install --upgrade setuptools pip
-    pip install --upgrade numpy
-    pip install matplotlib pandas
-    pip install 'ipython<6.0'
-    pip install jupyter notebook
-    pip install tensorflow-gpu
-
+    pip --no-cache-dir install --upgrade setuptools pip
+    pip --no-cache-dir install numpy matplotlib pandas scikit-image scikit-learn wheel zmq six pygments pyyaml cython
+    pip --no-cache-dir install 'ipython<6.0'
+    pip --no-cache-dir install jupyter notebook
+    pip --no-cache-dir install 'tensorflow-gpu<=1.5'
+    pip --no-cache-dir install tensorboard
+    pip --no-cache-dir install keras
+    pip --no-cache-dir install http://download.pytorch.org/whl/cu90/torch-0.3.0.post4-cp27-cp27mu-linux_x86_64.whl 
+    pip --no-cache-dir install torchvision
