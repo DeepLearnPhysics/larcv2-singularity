@@ -2,8 +2,8 @@ Bootstrap: docker
 From: ubuntu:16.04
 
 %help
-Ubuntu16.04 with root v06.08.06
-ML/DL packages  : sc-learn
+Ubuntu16.04 with root v06.08.06 cuda9 cudnn7
+DL/ML packages  : sc-learn
 Sci.  packages  : numpy pandas sc-image matplotlib
 Basic python    : ipython jupyter yaml pygments six zmq wheel
 Development kit : g++/gcc cython nvcc libqt4-dev python-dev
@@ -34,7 +34,7 @@ Version ubuntu16.04-root06.08.06-gpu
 %post
     # apt-get
     apt-get -y update
-    apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev python-dev python-pip git wget emacs vim
+    apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev python-dev python-tk python-pip git wget emacs vim
 
     # asciinema
     apt-get -y install software-properties-common python-software-properties
@@ -52,9 +52,9 @@ Version ubuntu16.04-root06.08.06-gpu
     export LD_LIBRARY_PATH=${ROOTSYS}/lib:${LD_LIBRARY_PATH}
     export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
 
-    # pip
+    # pip basics
     pip --no-cache-dir install --upgrade setuptools pip
-    pip --no-cache-dir install numpy matplotlib pandas scikit-image scikit-learn wheel zmq six pygments pyyaml cython
+    pip --no-cache-dir install numpy wheel zmq six pygments pyyaml cython
+    pip --no-cache-dir install matplotlib pandas scikit-image scikit-learn
     pip --no-cache-dir install 'ipython<6.0'
     pip --no-cache-dir install jupyter notebook
-

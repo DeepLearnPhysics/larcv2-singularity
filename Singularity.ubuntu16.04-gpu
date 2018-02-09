@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+From: nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
 
 %help
 Ubuntu16.04 with root v06.08.06 cuda9 cudnn7
@@ -34,7 +34,7 @@ Version ubuntu16.04-root06.08.06-gpu
 %post
     # apt-get
     apt-get -y update
-    apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev python-dev python-pip git wget emacs vim
+    apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev python-dev python-tk python-pip git wget emacs vim
 
     # asciinema
     apt-get -y install software-properties-common python-software-properties
@@ -52,13 +52,17 @@ Version ubuntu16.04-root06.08.06-gpu
     export LD_LIBRARY_PATH=${ROOTSYS}/lib:${LD_LIBRARY_PATH}
     export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
 
-    # pip
+    # pip basics
     pip --no-cache-dir install --upgrade setuptools pip
-    pip --no-cache-dir install numpy matplotlib pandas scikit-image scikit-learn wheel zmq six pygments pyyaml cython
+    pip --no-cache-dir install numpy wheel zmq six pygments pyyaml cython
+    pip --no-cache-dir install matplotlib pandas scikit-image scikit-learn
     pip --no-cache-dir install 'ipython<6.0'
     pip --no-cache-dir install jupyter notebook
-    pip --no-cache-dir install 'tensorflow-gpu<=1.5'
+    # tensorflow
+    pip --no-cache-dir install --upgrade 'tensorflow-gpu<1.5'
     pip --no-cache-dir install tensorboard
+    # keras
     pip --no-cache-dir install keras
+    # torch
     pip --no-cache-dir install http://download.pytorch.org/whl/cu90/torch-0.3.0.post4-cp27-cp27mu-linux_x86_64.whl 
     pip --no-cache-dir install torchvision
