@@ -54,7 +54,7 @@ Version ubuntu16.04-root06.08.06-gpu
 
     # pip basics
     pip --no-cache-dir install --upgrade setuptools pip
-    pip --no-cache-dir install numpy wheel zmq six pygments pyyaml cython
+    pip --no-cache-dir install numpy wheel zmq six pygments pyyaml cython psutil humanize
     pip --no-cache-dir install matplotlib pandas scikit-image scikit-learn
     pip --no-cache-dir install 'ipython<6.0'
     pip --no-cache-dir install jupyter notebook
