@@ -2,7 +2,7 @@ Bootstrap: shub
 From: DeepLearnPhysics/larcv2-singularity:ubuntu16.04-gpu
 
 %help
-Ubuntu16.04 with root v06.08.06 cuda v8.0 cudnn6
+Ubuntu16.04 with root v06.08.06 cuda v9 cudnn7
 Python packages: pip numpy tensorflow larcv matplotlib pandas ipython jupyter notebook
 Development kit: g++/gcc libqt4-dev python-dev nvcc
 Utility kit    : git wget emacs vim
