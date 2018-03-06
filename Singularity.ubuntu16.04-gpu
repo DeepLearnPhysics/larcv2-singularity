@@ -66,5 +66,5 @@ Version ubuntu16.04-root06.08.06-gpu
     pip --no-cache-dir install keras
     # torch
     #pip --no-cache-dir install http://download.pytorch.org/whl/cu90/torch-0.3.0.post4-cp27-cp27mu-linux_x86_64.whl 
-    pip --no-cache-dir install http://download.pytorch.org/whl/cu91/torch-0.3.1-cp27-cp27mu-linux_x86_64.whl 
+    pip --no-cache-dir install http://download.pytorch.org/whl/cu90/torch-0.3.1-cp27-cp27mu-linux_x86_64.whl 
     pip --no-cache-dir install torchvision
