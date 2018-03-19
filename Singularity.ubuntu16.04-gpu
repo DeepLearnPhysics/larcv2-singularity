@@ -5,7 +5,7 @@ From: nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 Ubuntu16.04 with root v06.08.06 cuda9 cudnn7
 ML/DL packages  : tensorflow keras torch sc-learn
 Sci.  packages  : numpy pandas sc-image matplotlib
-Basic python    : ipython jupyter yaml pygments six zmq wheel
+Basic python    : ipython jupyter yaml pygments six zmq wheel h5py
 Development kit : g++/gcc cython nvcc libqt4-dev python-dev
 Utility kit     : git wget emacs vim
 
@@ -41,6 +41,7 @@ Version ubuntu16.04-root06.08.06-gpu
     apt-add-repository -y ppa:zanchey/asciinema
     apt-get -y update
     apt-get -y install asciinema
+    apt-get -y install libhdf5-dev
 
     # ROOT    
     wget https://root.cern.ch/download/root_v6.08.06.Linux-ubuntu16-x86_64-gcc5.4.tar.gz
@@ -54,7 +55,7 @@ Version ubuntu16.04-root06.08.06-gpu
 
     # pip basics
     pip --no-cache-dir install --upgrade setuptools pip
-    pip --no-cache-dir install numpy wheel zmq six pygments pyyaml cython gputil psutil humanize
+    pip --no-cache-dir install numpy wheel zmq six pygments pyyaml cython gputil psutil humanize h5py
     pip --no-cache-dir install matplotlib pandas scikit-image scikit-learn
     pip --no-cache-dir install 'ipython<6.0'
     pip --no-cache-dir install jupyter notebook
