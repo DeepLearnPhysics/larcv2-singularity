@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: tensorflow/tensorflow:1.7.0-devel-gpu
+From: tensorflow/tensorflow:1.7.0-devel-gpu-py3
 
 %help
 Ubuntu16.04 with root v06.08.06 cuda9 cudnn7
@@ -17,7 +17,7 @@ singularity exec --nv THIS_CONTAINER.simg bash
 
 %labels
 Maintainer drinkingkazu
-Version ubuntu16.04-root06.08.06-gpu
+Version ubuntu16.04-root06.08.06-gpu-py3
 
 #------------
 # Global installation
@@ -28,16 +28,13 @@ Version ubuntu16.04-root06.08.06-gpu
     # for ROOT
     export ROOTSYS=/usr/local/root
     export PATH=${ROOTSYS}/bin:${PATH}
-    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib64/stubs:${ROOTSYS}/lib:${LD_LIBRARY_PATH}
+    export LD_LIBRARY_PATH=${ROOTSYS}/lib:${LD_LIBRARY_PATH}
     export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
-    export CUDA_DEVICE_ORDER=PCI_BUS_ID
 
 %post
-    ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/libcuda.so.1
-
     # apt-get
     apt-get -y update
-    apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev python-dev python-tk python-pip git wget emacs vim
+    apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev python3-dev python3-tk python3-pip git wget emacs vim
 
     # asciinema
     apt-get -y install software-properties-common python-software-properties
@@ -57,18 +54,18 @@ Version ubuntu16.04-root06.08.06-gpu
     export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
 
     # pip basics
-    pip --no-cache-dir install --upgrade setuptools pip
-    pip --no-cache-dir install numpy wheel zmq six pygments pyyaml cython gputil psutil humanize h5py tqdm
-    pip --no-cache-dir install matplotlib pandas scikit-image scikit-learn Pillow opencv-python
-    pip --no-cache-dir install 'ipython<6.0'
-    pip --no-cache-dir install jupyter notebook
+    pip3 --no-cache-dir install --upgrade setuptools pip
+    pip3 --no-cache-dir install numpy wheel zmq six pygments pyyaml cython gputil psutil humanize h5py tqdm
+    pip3 --no-cache-dir install matplotlib pandas scikit-image scikit-learn Pillow opencv-python
+    pip3 --no-cache-dir install 'ipython<6.0'
+    pip3 --no-cache-dir install jupyter notebook
     # tensorflow
-    #pip --no-cache-dir install --upgrade 'tensorflow-gpu<1.5'
-    #pip --no-cache-dir install --upgrade tensorflow-gpu
-    #pip --no-cache-dir install tensorboard
+    #pip3 --no-cache-dir install --upgrade 'tensorflow-gpu<1.5'
+    #pip3 --no-cache-dir install --upgrade tensorflow-gpu
+    #pip3 --no-cache-dir install tensorboard
     # keras
-    pip --no-cache-dir install keras
+    pip3 --no-cache-dir install keras
     # torch
-    #pip --no-cache-dir install http://download.pytorch.org/whl/cu90/torch-0.3.0.post4-cp27-cp27mu-linux_x86_64.whl 
-    pip --no-cache-dir install http://download.pytorch.org/whl/cu90/torch-0.3.1-cp27-cp27mu-linux_x86_64.whl 
-    pip --no-cache-dir install torchvision
+    #pip3 --no-cache-dir install http://download.pytorch.org/whl/cu90/torch-0.3.1-cp36-cp36m-linux_x86_64.whl
+    #pip3 --no-cache-dir install torchvision
+
