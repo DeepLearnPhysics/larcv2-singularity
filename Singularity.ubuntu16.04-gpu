@@ -1,11 +1,11 @@
 Bootstrap: docker
-From: nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+From: tensorflow/tensorflow:1.7.0-devel-gpu
 
 %help
 Ubuntu16.04 with root v06.08.06 cuda9 cudnn7
 ML/DL packages  : tensorflow keras torch sc-learn
 Sci.  packages  : numpy pandas sc-image matplotlib
-Basic python    : ipython jupyter yaml pygments six zmq wheel h5py
+Basic python    : ipython jupyter yaml pygments six zmq wheel h5py tqdm
 Development kit : g++/gcc cython nvcc libqt4-dev python-dev
 Utility kit     : git wget emacs vim
 
@@ -55,14 +55,14 @@ Version ubuntu16.04-root06.08.06-gpu
 
     # pip basics
     pip --no-cache-dir install --upgrade setuptools pip
-    pip --no-cache-dir install numpy wheel zmq six pygments pyyaml cython gputil psutil humanize h5py
-    pip --no-cache-dir install matplotlib pandas scikit-image scikit-learn
+    pip --no-cache-dir install numpy wheel zmq six pygments pyyaml cython gputil psutil humanize h5py tqdm
+    pip --no-cache-dir install matplotlib pandas scikit-image scikit-learn Pillow opencv-python
     pip --no-cache-dir install 'ipython<6.0'
     pip --no-cache-dir install jupyter notebook
     # tensorflow
     #pip --no-cache-dir install --upgrade 'tensorflow-gpu<1.5'
-    pip --no-cache-dir install --upgrade tensorflow-gpu
-    pip --no-cache-dir install tensorboard
+    #pip --no-cache-dir install --upgrade tensorflow-gpu
+    #pip --no-cache-dir install tensorboard
     # keras
     pip --no-cache-dir install keras
     # torch
