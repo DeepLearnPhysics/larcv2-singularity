@@ -28,10 +28,13 @@ Version ubuntu16.04-root06.08.06-gpu
     # for ROOT
     export ROOTSYS=/usr/local/root
     export PATH=${ROOTSYS}/bin:${PATH}
-    export LD_LIBRARY_PATH=${ROOTSYS}/lib:${LD_LIBRARY_PATH}
+    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib64/stubs:${ROOTSYS}/lib:${LD_LIBRARY_PATH}
     export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
+    export CUDA_DEVICE_ORDER=PCI_BUS_ID
 
 %post
+    ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/libcuda.so.1
+
     # apt-get
     apt-get -y update
     apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev python-dev python-tk python-pip git wget emacs vim
