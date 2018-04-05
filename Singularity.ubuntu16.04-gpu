@@ -33,7 +33,6 @@ Version ubuntu16.04-root06.08.06-gpu
     export CUDA_DEVICE_ORDER=PCI_BUS_ID
 
 %post
-    ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/libcuda.so.1
 
     # apt-get
     apt-get -y update
