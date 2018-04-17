@@ -4,8 +4,8 @@ From: ubuntu:16.04
 %help
 Ubuntu16.04 with root v06.08.06 cuda9 cudnn7
 DL/ML packages  : sc-learn
-Sci.  packages  : numpy pandas sc-image matplotlib
-Basic python    : ipython jupyter yaml pygments six zmq wheel h5py
+Sci.  packages  : numpy pandas sc-image matplotlib opencv-python
+Basic python    : ipython jupyter yaml pygments six zmq wheel h5py tqdm
 Development kit : g++/gcc cython nvcc libqt4-dev python-dev
 Utility kit     : git wget emacs vim
 
@@ -54,8 +54,10 @@ Version ubuntu16.04-root06.08.06-gpu
     export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
 
     # pip basics
-    pip --no-cache-dir install --upgrade setuptools pip
-    pip --no-cache-dir install numpy wheel zmq six pygments pyyaml cython psutil humanize h5py
-    pip --no-cache-dir install matplotlib pandas scikit-image scikit-learn
-    pip --no-cache-dir install 'ipython<6.0'
-    pip --no-cache-dir install jupyter notebook
+    pip --no-cache-dir --disable-pip-version-check install --upgrade setuptools 
+    pip --no-cache-dir --disable-pip-version-check install --upgrade 'pip<=9.0.3'
+    pip --no-cache-dir --disable-pip-version-check install numpy wheel zmq six pygments pyyaml cython gputil psutil humanize h5py tqdm
+    pip --no-cache-dir --disable-pip-version-check install matplotlib pandas scikit-image scikit-learn Pillow opencv-python
+    pip --no-cache-dir --disable-pip-version-check install 'ipython<6.0'
+    pip --no-cache-dir --disable-pip-version-check install jupyter notebook
+
