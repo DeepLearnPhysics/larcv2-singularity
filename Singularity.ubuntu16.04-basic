@@ -34,14 +34,18 @@ Version ubuntu16.04-root06.08.06-gpu
 %post
     # apt-get
     apt-get -y update
-    apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev python-dev python-tk python-pip git wget emacs vim
+    apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev git wget emacs vim
+    apt-get -y install python-dev python-tk python-pip python-qt4 python-setuptools
+    apt-get -y install python3-setuptools
+    apt-get -y install libhdf5-dev
 
     # asciinema
+    apt-get install -y locales
+    locale-gen en_US.UTF-8
     apt-get -y install software-properties-common python-software-properties
     apt-add-repository -y ppa:zanchey/asciinema
     apt-get -y update
     apt-get -y install asciinema
-    apt-get -y install libhdf5-dev
 
     # ROOT    
     wget https://root.cern.ch/download/root_v6.08.06.Linux-ubuntu16-x86_64-gcc5.4.tar.gz
