@@ -21,15 +21,23 @@ We build 3 types of images.
 * _Base_ image
   * Latest tag: **ub16.04-tf1.10.1-torch0.4.1**
   * `tensorflow-gpu` 1.10.1, `pytorch` 0.4.1
-  * ```singularity pull -n local.img shub://DeepLearnPhysics/larcv2-singularity:ub16.04-tf1.10.1-torch0.4.1```
+```
+singularity pull -n local.img shub://DeepLearnPhysics/larcv2-singularity:ub16.04-tf1.10.1-torch0.4.1
+```
+  
 * _ROOT_ image (include _Base_)
   * Latest tag: **ub16.04-tf1.10-torch0.4.1-root6.14.04**
   * `ROOT` 6.14.04, additional python package `root_numpy`
-  * ```singularity pull -n local.img shub://DeepLearnPhysics/larcv2-singularity:ub16.04-tf1.10.1-torch0.4.1-root6.14.04```
+```
+singularity pull -n local.img shub://DeepLearnPhysics/larcv2-singularity:ub16.04-tf1.10.1-torch0.4.1-root6.14.04
+```
+  
 * _LArCV_ image (include _ROOT_)
   * Tag: **latest**
   * Additional python package `larcv`
-  * ```singularity pull -n local.img shub://DeepLearnPhysics/larcv2-singularity:latest```
+```
+singularity pull -n local.img shub://DeepLearnPhysics/larcv2-singularity:latest
+```
 
 # Docker images?
 Checkout built images on our [docker hub](https://hub.docker.com/u/deeplearnphysics/dashboard/).
