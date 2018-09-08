@@ -1,4 +1,5 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://raw.githubusercontent.com/DeepLearnPhysics/larcv2-singularity/master/LICENSE)
+[![https://www.singularity-hub.org/static/img/hosted-singularity--hub-%23e32929.svg](https://www.singularity-hub.org/static/img/hosted-singularity--hub-%23e32929.svg)](https://singularity-hub.org/collections/459)
 # larcv2-singularity
 Singularity build scripts for [singularity hub](https://www.singularity-hub.org/collections/459). You can learn about Singularity in [our wiki](https://github.com/DeepLearnPhysics/playground-singularity/wiki) or [official doc](https://www.sylabs.io/docs/).
 
