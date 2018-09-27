@@ -1,5 +1,5 @@
 Bootstrap: shub
-From: DeepLearnPhysics/larcv2-singularity:ub16.04-tf1.10.1-torch0.4.1-root6.14.04
+From: DeepLearnPhysics/larcv2-singularity:ub16.04-tf1.11.0-torch0.4.1-root6.14.04
 
 %help
 Ubuntu16.04 with cuda9.0 cudnn7
