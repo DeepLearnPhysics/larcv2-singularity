@@ -17,7 +17,7 @@ singularity exec --nv THIS_CONTAINER.simg bash
 
 %labels
 Maintainer drinkingkazu
-Version ub16.04-tf1.10.1-torch0.4.1
+Version ub16.04-tf1.11.0-torch0.4.1
 
 #------------
 # Global installation
@@ -52,7 +52,7 @@ Version ub16.04-tf1.10.1-torch0.4.1
     pip --no-cache-dir --disable-pip-version-check install jupyter notebook
 
     # tensorflow
-    pip --no-cache-dir --disable-pip-version-check install --upgrade tensorflow-gpu==1.10.1
+    pip --no-cache-dir --disable-pip-version-check install --upgrade tensorflow-gpu==1.11.0
     pip --no-cache-dir --disable-pip-version-check install tensorboard
 
     # keras
