@@ -29,7 +29,7 @@ Version ub16.04-tf1.10.1-torch0.4.1-root6.14.04
     # for ROOT
     export ROOTSYS=/usr/local/root
     export PATH=${ROOTSYS}/bin:${PATH}
-    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib64/stubs:${ROOTSYS}/lib:${LD_LIBRARY_PATH}
+    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib64/stubs:/usr/local/cuda/extras/CUPTI/lib64/:${ROOTSYS}/lib:${LD_LIBRARY_PATH}
     export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
 
 %post
