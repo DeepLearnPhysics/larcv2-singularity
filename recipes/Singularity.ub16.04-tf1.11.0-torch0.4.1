@@ -5,9 +5,9 @@ From: nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 Ubuntu16.04 with cuda9.0 cudnn7
 ML/DL packages  : tensorflow keras torch sc-learn
 Sci.  packages  : numpy pandas sc-image matplotlib opencv-python
-Basic python    : ipython jupyter yaml pygments six zmq wheel h5py tqdm
+Basic python    : ipython jupyter yaml pygments six zmq wheel h5py tqdm mpi4py horovod
 Development kit : g++/gcc cython nvcc libqt4-dev python-dev
-Utility kit     : git wget emacs vim openssh-client
+Utility kit     : git wget emacs vim openssh-client openmpi
 
 To start your container simply try
 singularity exec THIS_CONTAINER.simg bash
@@ -31,10 +31,11 @@ Version ub16.04-tf1.11.0-torch0.4.1
 
     # apt-get
     apt-get -y update
-    apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev git wget emacs vim openssh-client zip
+    apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev git wget emacs vim openssh-client zip openmpi
     apt-get -y install python-dev python-tk python-pip python-qt4 python-setuptools
     apt-get -y install python3-setuptools
     apt-get -y install libhdf5-dev
+
 
     # asciinema
     apt-get install -y locales
@@ -63,3 +64,7 @@ Version ub16.04-tf1.11.0-torch0.4.1
     # torch
     pip --no-cache-dir --disable-pip-version-check install torch==0.4.1
     pip --no-cache-dir --disable-pip-version-check install torchvision==0.2.1
+    
+    # mpi and horovod
+    pip --no-cache-dir --disable-pip-version-check install mpi4py
+    pip --no-cache-dir --disable-pip-version-check install horovod
