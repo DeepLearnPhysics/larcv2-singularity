@@ -7,7 +7,7 @@ ML/DL packages  : tensorflow keras torch sc-learn
 Sci.  packages  : numpy pandas sc-image matplotlib opencv-python root root_numpy
 Basic python    : ipython jupyter yaml pygments six zmq wheel h5py tqdm
 Development kit : g++/gcc cython nvcc libqt4-dev python-dev
-Utility kit     : git wget emacs vim openssh-client
+Utility kit     : git wget emacs vim openssh-client openmpi
 
 To start your container simply try
 singularity exec THIS_CONTAINER.simg bash
@@ -36,7 +36,7 @@ Version ub16.04-tf1.11.0-torch0.4.1-root6.14.04
 
     # apt-get
     apt-get -y update
-    apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev git wget emacs vim openssh-client 
+    apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev git wget emacs vim openssh-client libopenmpi-dev 
     apt-get -y install python-dev python-tk python-pip python-qt4 python-setuptools
     apt-get -y install python3-setuptools
     apt-get -y install libhdf5-dev
@@ -78,3 +78,8 @@ Version ub16.04-tf1.11.0-torch0.4.1-root6.14.04
     # torch
     pip --no-cache-dir --disable-pip-version-check install torch==0.4.1
     pip --no-cache-dir --disable-pip-version-check install torchvision==0.2.1
+
+    # horovod and mpi4py
+    pip --no-cache-dir --disable-pip-version-check install mpi4py
+    pip --no-cache-dir --disable-pip-version-check install horovod==0.15.0
+
