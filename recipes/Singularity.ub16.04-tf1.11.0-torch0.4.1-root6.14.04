@@ -3,7 +3,7 @@ From: nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 
 %help
 Ubuntu16.04 with cuda9.0 cudnn7
-ML/DL packages  : tensorflow keras torch sc-learn
+ML/DL packages  : tensorflow keras torch sc-learn nccl2
 Sci.  packages  : numpy pandas sc-image matplotlib opencv-python root root_numpy
 Basic python    : ipython jupyter yaml pygments six zmq wheel h5py tqdm
 Development kit : g++/gcc cython nvcc libqt4-dev python-dev
@@ -40,6 +40,9 @@ Version ub16.04-tf1.11.0-torch0.4.1-root6.14.04
     apt-get -y install python-dev python-tk python-pip python-qt4 python-setuptools
     apt-get -y install python3-setuptools
     apt-get -y install libhdf5-dev
+
+    #nccl2
+    apt-get -y install libnccl2=2.3.5-2+cuda9.0 libnccl2-dev=2.3.5-2+cuda9.0
 
     # asciinema
     apt-get install -y locales
