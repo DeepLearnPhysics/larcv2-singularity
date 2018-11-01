@@ -41,9 +41,14 @@ Version ub16.04-tf1.11.0-torch0.4.1-root6.14.04
     apt-get -y install python3-setuptools
     apt-get -y install libhdf5-dev
 
-    #nccl2
-    apt-get -y install libnccl2=2.3.5-2+cuda9.0 libnccl2-dev=2.3.5-2+cuda9.0
-
+    # nccl2
+    git clone https://github.com/NVIDIA/nccl.git
+    cd nccl;
+    make -j src.build
+    make pkg.debian.build
+    dpkg -i build/pkg/deb/libnccl* 
+    cd -
+    
     # asciinema
     apt-get install -y locales
     locale-gen en_US.UTF-8

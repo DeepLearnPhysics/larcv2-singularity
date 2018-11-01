@@ -5,7 +5,7 @@ From: nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 %help
 Ubuntu16.04 with cuda9.0 cudnn7
 ML/DL packages  : tensorflow keras torch sc-learn
-Sci.  packages  : numpy pandas sc-image matplotlib opencv-python
+Sci.  packages  : numpy pandas sc-image matplotlib opencv-python libopenmpi-dev
 Basic python    : ipython jupyter yaml pygments six zmq wheel h5py tqdm
 Development kit : g++/gcc cython nvcc libqt4-dev python-dev
 Utility kit     : git wget emacs vim
@@ -37,6 +37,14 @@ Version ub16.04-tf1.7-torch0.4
     apt-get -y install python3-setuptools
     apt-get -y install libhdf5-dev
 
+    # nccl2
+    git clone https://github.com/NVIDIA/nccl.git
+    cd nccl;
+    make -j src.build
+    make pkg.debian.build
+    dpkg -i build/pkg/deb/libnccl* 
+    cd -
+
     # asciinema
     apt-get install -y locales
     locale-gen en_US.UTF-8
@@ -63,3 +71,8 @@ Version ub16.04-tf1.7-torch0.4
     # torch
     pip --no-cache-dir --disable-pip-version-check install torch==0.4.1
     pip --no-cache-dir --disable-pip-version-check install torchvision==0.2.1
+
+    #mpi and horovod
+    pip --no-cache-dir --disable-pip-version-check install mpi4py
+    pip --no-cache-dir --disable-pip-version-check install horovod==0.15.0
+
