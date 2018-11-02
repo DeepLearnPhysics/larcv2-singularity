@@ -69,6 +69,14 @@ Version centos7-tf1.11.0-torch0.4.1
     cd ..
     rm -rf mpich-3.2.1
 
+    # nccl2
+    git clone https://github.com/NVIDIA/nccl.git
+    cd nccl;
+    make -j src.build
+    make pkg.redhat.build
+    rpm -i build/pkg/rpm/x86_64/libnccl* 
+    cd -
+    rm -rf nccl/
 
     # ROOT
     wget https://root.cern.ch/download/root_v6.14.04.Linux-centos7-x86_64-gcc4.8.tar.gz
