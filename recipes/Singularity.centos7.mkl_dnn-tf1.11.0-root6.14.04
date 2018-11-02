@@ -24,7 +24,16 @@ Version centos7-tf1.11.0-torch0.4.1
 #------------
 %environment
     # for system
-    export XDG_RUNTIME_DIR=/tmp/$USER
+
+    # for ROOT
+    export ROOTSYS=/usr/local/root
+    export PATH=${ROOTSYS}/bin:${PATH}
+    export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
+    export LD_LIBRARY_PATH=/usr/local/root/lib/:$LD_LIBRARY_PATH
+
+    # for MPICH:
+    export PATH=/usr/local/mpich/install/bin/:$PATH
+    export LD_LIBRARY_PATH=/usr/local/mpich/install/lib/:$LD_LIBRARY_PATH
 
 %post
 
@@ -82,6 +91,6 @@ Version centos7-tf1.11.0-torch0.4.1
     # tensorflow with mkl-dnn:
     pip install https://storage.googleapis.com/intel-optimized-tensorflow/tensorflow-1.11.0-cp27-cp27mu-linux_x86_64.whl
 
-    ## mpi and horovod
-    #pip --no-cache-dir --disable-pip-version-check install mpi4py
+    # mpi and horovod
+    pip --no-cache-dir --disable-pip-version-check install mpi4py
     #pip --no-cache-dir --disable-pip-version-check install horovod==0.15.0

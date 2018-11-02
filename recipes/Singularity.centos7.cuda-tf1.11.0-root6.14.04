@@ -105,8 +105,8 @@ Version centos7-tf1.11.0-torch0.4.1
     # keras
     pip --no-cache-dir --disable-pip-version-check install keras
 
-#    # mpi4py and horovod
-#    pip --no-cache-dir --disable-pip-version-check install mpi4py
+    # mpi4py and horovod
+    pip --no-cache-dir --disable-pip-version-check install mpi4py
 #    pip --no-cache-dir --disable-pip-version-check install horovod==0.15.0
 
 
