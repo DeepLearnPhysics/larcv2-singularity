@@ -27,9 +27,21 @@ Version centos7-tf1.11.0-torch0.4.1
     export XDG_RUNTIME_DIR=/tmp/$USER
     export CUDA_DEVICE_ORDER=PCI_BUS_ID
 
+    # for CUDA and CUPTI
+    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib64/stubs:/usr/local/cuda/extras/CUPTI/lib64/:${ROOTSYS}/lib:${LD_LIBRARY_PATH}
+
+    # for ROOT
+    export ROOTSYS=/usr/local/root
+    export PATH=${ROOTSYS}/bin:${PATH}
+    export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
+
+    # for MPICH:
+    export PATH=/mpich-3.2.1/install/bin/:$PATH
+    export LD_LIBRARY_PATH=/mpich-3.2.1/install/lib/:$LD_LIBRARY_PATH
+
 %post
 
-    # yum
+    # yum basics
     yum update -y
     yum groupinstall -y "Development Tools"
     yum install -y epel-release
@@ -42,6 +54,7 @@ Version centos7-tf1.11.0-torch0.4.1
     # install MPICH
     wget -q http://www.mpich.org/static/downloads/3.2.1/mpich-3.2.1.tar.gz
     tar xf mpich-3.2.1.tar.gz
+    rm mpich-3.2.1.tar.gz
     cd mpich-3.2.1
     # disable the addition of the RPATH to compiled executables
     # this allows us to override the MPI libraries to use those
@@ -63,6 +76,16 @@ Version centos7-tf1.11.0-torch0.4.1
     cd -
 
 
+    # ROOT
+    wget https://root.cern.ch/download/root_v6.14.04.Linux-centos7-x86_64-gcc4.8.tar.gz
+    tar -xzf root_v6.14.04.Linux-centos7-x86_64-gcc4.8.tar.gz
+    rm root_v6.14.04.Linux-centos7-x86_64-gcc4.8.tar.gz
+    mv root /usr/local/root
+    export ROOTSYS=/usr/local/root
+    export PATH=${ROOTSYS}/bin:${PATH}
+    export LD_LIBRARY_PATH=${ROOTSYS}/lib:${LD_LIBRARY_PATH}
+    export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
+
     # pip basics
     pip --no-cache-dir --disable-pip-version-check install --upgrade setuptools 
     pip --no-cache-dir --disable-pip-version-check install 'matplotlib<3.0' # for python2.7
@@ -79,6 +102,9 @@ Version centos7-tf1.11.0-torch0.4.1
     # keras
     pip --no-cache-dir --disable-pip-version-check install keras
 
-    # mpi and horovod
-    pip --no-cache-dir --disable-pip-version-check install mpi4py
-    pip --no-cache-dir --disable-pip-version-check install horovod==0.15.0
+#    # mpi4py and horovod
+#    pip --no-cache-dir --disable-pip-version-check install mpi4py
+#    pip --no-cache-dir --disable-pip-version-check install horovod==0.15.0
+
+
+
