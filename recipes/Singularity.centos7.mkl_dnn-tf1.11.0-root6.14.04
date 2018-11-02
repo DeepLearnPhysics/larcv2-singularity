@@ -37,6 +37,7 @@ Version centos7-tf1.11.0-torch0.4.1
     yum install -y PyQt4 PyQt4-devel
     yum install -y emacs vim openssh-clients zip 
     yum install -y python-devel python-pip  python-setuptools
+#    yum install -y hdf5
 
     # install MPICH
     wget -q http://www.mpich.org/static/downloads/3.2.1/mpich-3.2.1.tar.gz
