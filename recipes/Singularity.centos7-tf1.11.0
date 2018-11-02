@@ -32,22 +32,35 @@ Version centos7-tf1.11.0-torch0.4.1
     # yum
     yum update -y
     yum groupinstall -y "Development Tools"
-    yum install -y gcc
-    yum install -y gcc-c++
-    yum install -y wget git emacs vim 
-    yum install -y qt47-devel
-#    yum -y install dpkg-dev g++ gcc binutils  git wget emacs vim openssh-client zip libopenmpi-dev
-#    yum -y install python-dev python-tk python-pip python-qt4 python-setuptools
-#    yum -y install python3-setuptools
-#    yum -y install libhdf5-dev
-#    yum -y install devscripts debhelper
+    yum install -y wget emacs vim 
+    yum install -y PyQt4 PyQt4-devel
+    yum install -y emacs vim openssh-clients zip 
+    yum install -y python-devel python-pip  python-setuptools
+    yum install -y hdf5
+
+    # install MPICH
+    wget -q http://www.mpich.org/static/downloads/3.2.1/mpich-3.2.1.tar.gz
+    tar xf mpich-3.2.1.tar.gz
+    cd mpich-3.2.1
+    # disable the addition of the RPATH to compiled executables
+    # this allows us to override the MPI libraries to use those
+    # found via LD_LIBRARY_PATH
+    ./configure --prefix=$PWD/install --disable-wrapper-rpath
+    make -j 4 install
+    # add to local environment to build pi.c
+    export PATH=$PATH:$(pwd)/install/bin
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)/install/lib
+    env | sort
+    cd ..
+
+
 
 #
  #   # nccl2
  #   git clone https://github.com/NVIDIA/nccl.git
  #   cd nccl;
  #   make -j src.build
- #   make pkg.debian.build
+ #   make pkg.redhat.build
  #   dpkg -i build/pkg/deb/libnccl* 
  #   cd -
 #
