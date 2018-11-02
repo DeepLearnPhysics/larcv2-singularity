@@ -36,8 +36,8 @@ Version centos7-tf1.11.0-torch0.4.1
     export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
 
     # for MPICH:
-    export PATH=/mpich-3.2.1/install/bin/:$PATH
-    export LD_LIBRARY_PATH=/mpich-3.2.1/install/lib/:$LD_LIBRARY_PATH
+    export PATH=/usr/local/mpich/install/bin/:$PATH
+    export LD_LIBRARY_PATH=/usr/local/mpich/install/lib/:$LD_LIBRARY_PATH
 
 %post
 
@@ -51,6 +51,7 @@ Version centos7-tf1.11.0-torch0.4.1
     yum install -y python-devel python-pip  python-setuptools
     yum install -y hdf5
 
+
     # install MPICH
     wget -q http://www.mpich.org/static/downloads/3.2.1/mpich-3.2.1.tar.gz
     tar xf mpich-3.2.1.tar.gz
@@ -59,13 +60,14 @@ Version centos7-tf1.11.0-torch0.4.1
     # disable the addition of the RPATH to compiled executables
     # this allows us to override the MPI libraries to use those
     # found via LD_LIBRARY_PATH
-    ./configure --prefix=$PWD/install --disable-wrapper-rpath
+    ./configure --prefix=/usr/local/mpich/install --disable-wrapper-rpath
     make -j 4 install
     # add to local environment to build pi.c
-    export PATH=$PATH:$(pwd)/install/bin
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)/install/lib
+    export PATH=$PATH:/usr/local/mpich//install/bin
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/mpich//install/lib
     env | sort
     cd ..
+    rm -rf mpich-3.2.1
 
     # nccl2
     git clone https://github.com/NVIDIA/nccl.git
@@ -74,7 +76,7 @@ Version centos7-tf1.11.0-torch0.4.1
     make pkg.redhat.build
     rpm -i build/pkg/rpm/x86_64/libnccl* 
     cd -
-
+    rm -rf nccl/
 
     # ROOT
     wget https://root.cern.ch/download/root_v6.14.04.Linux-centos7-x86_64-gcc4.8.tar.gz
