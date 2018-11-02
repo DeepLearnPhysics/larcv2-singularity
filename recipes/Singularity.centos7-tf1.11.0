@@ -30,8 +30,13 @@ Version centos7-tf1.11.0-torch0.4.1
 %post
 
     # yum
-    yum -y update
-#    yum -y install dpkg-dev g++ gcc binutils libqt4-dev git wget emacs vim openssh-client zip libopenmpi-dev
+    yum update -y
+    yum groupinstall -y "Development Tools"
+    yum install -y gcc
+    yum install -y gcc-c++
+    yum install -y wget git emacs vim 
+    yum install -y qt47-devel
+#    yum -y install dpkg-dev g++ gcc binutils  git wget emacs vim openssh-client zip libopenmpi-dev
 #    yum -y install python-dev python-tk python-pip python-qt4 python-setuptools
 #    yum -y install python3-setuptools
 #    yum -y install libhdf5-dev
