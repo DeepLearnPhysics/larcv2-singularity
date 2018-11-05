@@ -115,7 +115,7 @@ Version centos7-tf1.11.0-torch0.4.1
 
     # mpi4py and horovod
     pip --no-cache-dir --disable-pip-version-check install mpi4py
-    pip --no-cache-dir --disable-pip-version-check install horovod
+    HOROVOD_WITH_TENSORFLOW=1 pip --no-cache-dir --disable-pip-version-check install horovod
 
 
 
