@@ -40,6 +40,10 @@ Version centos7-tf1.11.0-torch0.4.1
     export LD_LIBRARY_PATH=/usr/local/mpich/install/lib/:$LD_LIBRARY_PATH
 
 %post
+    
+    # for CUDA and CUPTI
+    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib64/stubs:/usr/local/cuda/extras/CUPTI/lib64/:${ROOTSYS}/lib:${LD_LIBRARY_PATH}
+    
 
     # yum basics
     yum update -y
@@ -102,11 +106,16 @@ Version centos7-tf1.11.0-torch0.4.1
     pip --no-cache-dir --disable-pip-version-check install tensorboard
 
     # keras
-#    pip --no-cache-dir --disable-pip-version-check install keras
+    pip --no-cache-dir --disable-pip-version-check install keras
+
+    # torch
+    pip --no-cache-dir --disable-pip-version-check install torch==0.4.1
+    pip --no-cache-dir --disable-pip-version-check install torchvision==0.2.1
+
 
     # mpi4py and horovod
     pip --no-cache-dir --disable-pip-version-check install mpi4py
-    #pip --no-cache-dir --disable-pip-version-check install horovod
+    pip --no-cache-dir --disable-pip-version-check install horovod
 
 
 
