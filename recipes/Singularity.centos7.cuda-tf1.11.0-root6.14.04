@@ -111,11 +111,22 @@ Version centos7-tf1.11.0-torch0.4.1
     # torch
     pip --no-cache-dir --disable-pip-version-check install torch==0.4.1
     pip --no-cache-dir --disable-pip-version-check install torchvision==0.2.1
-
-
-    # mpi4py and horovod
+    
+    # mpi4py
     pip --no-cache-dir --disable-pip-version-check install mpi4py
-    HOROVOD_WITH_TENSORFLOW=1 pip --no-cache-dir --disable-pip-version-check install horovod
+
+
+    # Workaround to build horovod without needing cuda libraries available:
+    # temporary add stub drivers to ld.so.cache
+    ldconfig /usr/local/cuda/lib64/stubs
+
+    # install Horovod, add other HOROVOD_* environment variables as necessary
+    # HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_NCCL_HOME=/path/to/nccl pip install --no-cache-dir horovod
+    HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_WITH_TENSORFLOW=1 pip install --no-cache-dir horovod
+
+    # revert to standard libraries
+    ldconfig
+
 
 
 
