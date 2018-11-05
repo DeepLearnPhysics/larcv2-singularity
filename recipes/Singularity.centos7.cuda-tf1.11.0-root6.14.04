@@ -52,22 +52,22 @@ Version centos7-tf1.11.0-torch0.4.1
     yum install -y hdf5
 #
 
-#    # install MPICH
-#    wget -q http://www.mpich.org/static/downloads/3.2.1/mpich-3.2.1.tar.gz
-#    tar xf mpich-3.2.1.tar.gz
-#    rm mpich-3.2.1.tar.gz
-#    cd mpich-3.2.1
-#    # disable the addition of the RPATH to compiled executables
-#    # this allows us to override the MPI libraries to use those
-#    # found via LD_LIBRARY_PATH
-#    ./configure --prefix=/usr/local/mpich/install --disable-wrapper-rpath
-#    make -j 4 install
-#    # add to local environment to build pi.c
-#    export PATH=$PATH:/usr/local/mpich//install/bin
-#    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/mpich//install/lib
-#    env | sort
-#    cd ..
-#    rm -rf mpich-3.2.1
+    # install MPICH
+    wget -q http://www.mpich.org/static/downloads/3.2.1/mpich-3.2.1.tar.gz
+    tar xf mpich-3.2.1.tar.gz
+    rm mpich-3.2.1.tar.gz
+    cd mpich-3.2.1
+    # disable the addition of the RPATH to compiled executables
+    # this allows us to override the MPI libraries to use those
+    # found via LD_LIBRARY_PATH
+    ./configure --prefix=/usr/local/mpich/install --disable-wrapper-rpath
+    make -j 4 install
+    # add to local environment to build pi.c
+    export PATH=$PATH:/usr/local/mpich//install/bin
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/mpich//install/lib
+    env | sort
+    cd ..
+    rm -rf mpich-3.2.1
 
 #    # nccl2
 #    git clone https://github.com/NVIDIA/nccl.git
@@ -106,7 +106,7 @@ Version centos7-tf1.11.0-torch0.4.1
 
     # mpi4py and horovod
     pip --no-cache-dir --disable-pip-version-check install mpi4py
-    HOROVOD_WITH_TENSORFLOW=1 pip --no-cache-dir --disable-pip-version-check install horovod
+    pip --no-cache-dir --disable-pip-version-check install horovod
 
 
 
