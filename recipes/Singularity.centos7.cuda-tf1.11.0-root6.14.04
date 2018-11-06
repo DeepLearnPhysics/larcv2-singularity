@@ -25,7 +25,7 @@ Version centos7-tf1.11.0-torch0.4.1
 %environment
     # for system
     export CUDA_DEVICE_ORDER=PCI_BUS_ID
-    scl enable devtoolset-7 bash
+    scl enable devtoolset-6 bash
 
     # for CUDA and CUPTI
     export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib64/stubs:/usr/local/cuda/extras/CUPTI/lib64/:${ROOTSYS}/lib:${LD_LIBRARY_PATH}
@@ -51,7 +51,7 @@ Version centos7-tf1.11.0-torch0.4.1
     yum groupinstall -y "Development Tools"
     yum install -y centos-release-scl
     yum install -y devtoolset-6
-    scl enable devtoolset-7 bash
+    scl enable devtoolset-6 bash
     yum install -y epel-release
     yum install -y wget emacs vim 
     yum install -y PyQt4 PyQt4-devel
@@ -126,7 +126,7 @@ Version centos7-tf1.11.0-torch0.4.1
 
     # install Horovod, add other HOROVOD_* environment variables as necessary
     # HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_NCCL_HOME=/path/to/nccl pip install --no-cache-dir horovod
-    HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_WITH_TENSORFLOW=1 HOROVOD_NCCL_HOME=/nccl/ pip install --no-cache-dir horovod
+#    HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_WITH_TENSORFLOW=1 HOROVOD_NCCL_INCLUDE=/nccl/build/ pip install --no-cache-dir horovod
 
     # revert to standard libraries
     ldconfig
