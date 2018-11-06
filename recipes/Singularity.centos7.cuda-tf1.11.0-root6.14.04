@@ -42,7 +42,7 @@ Version centos7-tf1.11.0-torch0.4.1
 %post
     
     # for CUDA and CUPTI
-    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib64/stubs:/usr/local/cuda/extras/CUPTI/lib64/:${ROOTSYS}/lib:${LD_LIBRARY_PATH}
+    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64/:${ROOTSYS}/lib:${LD_LIBRARY_PATH}
     
 
     # yum basics
@@ -126,22 +126,6 @@ Version centos7-tf1.11.0-torch0.4.1
 
     # revert to standard libraries
     ldconfig
-
-    # for ROOT
-    export ROOTSYS=/usr/local/root
-    export PATH=${ROOTSYS}/bin:${PATH}
-    export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
-    export LD_LIBRARY_PATH=/usr/local/root/lib/:${LD_LIBRARY_PATH}
-
-    # for MPICH:
-    export PATH=/usr/local/mpich/install/bin/:${PATH}
-    export LD_LIBRARY_PATH=/usr/local/mpich/install/lib/:${LD_LIBRARY_PATH}
-    echo ${PATH}
-    echo ${PYTHONPATH}
-    echo ${LD_LIBRARY_PATH}
-    echo 'export PATH=${PATH}' >>$SINGULARITY_ENVIRONMENT
-    echo 'export ROOTSYS=${ROOTSYS}' >>$SINGULARITY_ENVIRONMENT
-    echo 'export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}' >>$SINGULARITY_ENVIRONMENT
 
 
 
