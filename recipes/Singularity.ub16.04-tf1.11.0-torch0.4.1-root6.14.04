@@ -51,15 +51,6 @@ Version ub16.04-tf1.11.0-torch0.4.1-root6.14.04
     apt-get -y install libhdf5-dev
     apt-get -y install devscripts debhelper
 
-    # nccl2
-    git clone https://github.com/NVIDIA/nccl.git
-    cd nccl;
-    make -j src.build
-    make pkg.debian.build
-    dpkg -i build/pkg/deb/libnccl* 
-    cd -
-    
-
     # install MPICH
     wget -q http://www.mpich.org/static/downloads/3.2.1/mpich-3.2.1.tar.gz
     tar xf mpich-3.2.1.tar.gz
@@ -68,7 +59,7 @@ Version ub16.04-tf1.11.0-torch0.4.1-root6.14.04
     # disable the addition of the RPATH to compiled executables
     # this allows us to override the MPI libraries to use those
     # found via LD_LIBRARY_PATH
-    ./configure --prefix=/usr/local/mpich/install --disable-wrapper-rpath --disable-f77
+    ./configure --prefix=/usr/local/mpich/install --disable-wrapper-rpath --disable-fortran
     make -j 4 install
     # add to local environment to build pi.c
     export PATH=$PATH:/usr/local/mpich//install/bin
@@ -76,7 +67,14 @@ Version ub16.04-tf1.11.0-torch0.4.1-root6.14.04
     env | sort
     cd ..
     rm -rf mpich-3.2.1
-
+    
+    # nccl2
+    git clone https://github.com/NVIDIA/nccl.git
+    cd nccl;
+    make -j src.build
+    make pkg.debian.build
+    dpkg -i build/pkg/deb/libnccl* 
+    cd -
 
     # asciinema
     apt-get install -y locales
