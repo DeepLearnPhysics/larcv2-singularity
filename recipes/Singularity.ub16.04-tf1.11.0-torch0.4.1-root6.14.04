@@ -7,7 +7,7 @@ ML/DL packages  : tensorflow keras torch sc-learn nccl2
 Sci.  packages  : numpy pandas sc-image matplotlib opencv-python root root_numpy
 Basic python    : ipython jupyter yaml pygments six zmq wheel h5py tqdm
 Development kit : g++/gcc cython nvcc libqt4-dev python-dev
-Utility kit     : git wget emacs vim openssh-client openmpi
+Utility kit     : git wget emacs vim openssh-client mpich
 
 To start your container simply try
 singularity exec THIS_CONTAINER.simg bash
@@ -29,14 +29,23 @@ Version ub16.04-tf1.11.0-torch0.4.1-root6.14.04
     # for ROOT
     export ROOTSYS=/usr/local/root
     export PATH=${ROOTSYS}/bin:${PATH}
-    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib64/stubs:${ROOTSYS}/lib:${LD_LIBRARY_PATH}
     export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
+    export LD_LIBRARY_PATH=${ROOTSYS}/lib:${LD_LIBRARY_PATH}
+
+
+    # for CUDA and CUPTI
+    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib64/stubs:/usr/local/cuda/extras/CUPTI/lib64/:${ROOTSYS}/lib:${LD_LIBRARY_PATH}
+
+    # for MPICH:
+    export PATH=/usr/local/mpich/install/bin/:${PATH}
+    export LD_LIBRARY_PATH=/usr/local/mpich/install/lib/:${LD_LIBRARY_PATH}
+
 
 %post
 
     # apt-get
     apt-get -y update
-    apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev git wget emacs vim openssh-client libopenmpi-dev 
+    apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev git wget emacs vim openssh-client
     apt-get -y install python-dev python-tk python-pip python-qt4 python-setuptools
     apt-get -y install python3-setuptools
     apt-get -y install libhdf5-dev
@@ -50,6 +59,25 @@ Version ub16.04-tf1.11.0-torch0.4.1-root6.14.04
     dpkg -i build/pkg/deb/libnccl* 
     cd -
     
+
+    # install MPICH
+    wget -q http://www.mpich.org/static/downloads/3.2.1/mpich-3.2.1.tar.gz
+    tar xf mpich-3.2.1.tar.gz
+    rm mpich-3.2.1.tar.gz
+    cd mpich-3.2.1
+    # disable the addition of the RPATH to compiled executables
+    # this allows us to override the MPI libraries to use those
+    # found via LD_LIBRARY_PATH
+    ./configure --prefix=/usr/local/mpich/install --disable-wrapper-rpath
+    make -j 4 install
+    # add to local environment to build pi.c
+    export PATH=$PATH:/usr/local/mpich//install/bin
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/mpich//install/lib
+    env | sort
+    cd ..
+    rm -rf mpich-3.2.1
+
+
     # asciinema
     apt-get install -y locales
     locale-gen en_US.UTF-8
@@ -90,5 +118,15 @@ Version ub16.04-tf1.11.0-torch0.4.1-root6.14.04
 
     # horovod and mpi4py
     pip --no-cache-dir --disable-pip-version-check install mpi4py
-    pip --no-cache-dir --disable-pip-version-check install horovod==0.15.0
 
+
+    # Workaround to build horovod without needing cuda libraries available:
+    # temporary add stub drivers to ld.so.cache
+    ldconfig /usr/local/cuda/lib64/stubs
+
+    # install Horovod, add other HOROVOD_* environment variables as necessary
+    # HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_NCCL_HOME=/path/to/nccl pip install --no-cache-dir horovod
+    HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_WITH_TENSORFLOW=1 HOROVOD_NCCL_HOME=/nccl/build/ pip install --no-cache-dir horovod
+
+    # revert to standard libraries
+    ldconfig
