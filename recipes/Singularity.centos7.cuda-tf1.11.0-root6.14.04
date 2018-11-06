@@ -84,7 +84,7 @@ Version centos7-tf1.11.0-torch0.4.1
     make pkg.redhat.build
     rpm -i build/pkg/rpm/x86_64/libnccl* 
     cd -
-    rm -rf nccl/
+    # rm -rf nccl/
 
     # ROOT
     wget https://root.cern.ch/download/root_v6.14.04.Linux-centos7-x86_64-gcc4.8.tar.gz
@@ -126,7 +126,7 @@ Version centos7-tf1.11.0-torch0.4.1
 
     # install Horovod, add other HOROVOD_* environment variables as necessary
     # HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_NCCL_HOME=/path/to/nccl pip install --no-cache-dir horovod
-    HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_WITH_TENSORFLOW=1 pip install --no-cache-dir horovod
+    HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_WITH_TENSORFLOW=1 HOROVOD_NCCL_HOME=/nccl/ pip install --no-cache-dir horovod
 
     # revert to standard libraries
     ldconfig
