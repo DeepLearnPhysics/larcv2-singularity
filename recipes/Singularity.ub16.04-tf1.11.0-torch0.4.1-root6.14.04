@@ -68,7 +68,7 @@ Version ub16.04-tf1.11.0-torch0.4.1-root6.14.04
     # disable the addition of the RPATH to compiled executables
     # this allows us to override the MPI libraries to use those
     # found via LD_LIBRARY_PATH
-    ./configure --prefix=/usr/local/mpich/install --disable-wrapper-rpath
+    ./configure --prefix=/usr/local/mpich/install --disable-wrapper-rpath --disable-f77
     make -j 4 install
     # add to local environment to build pi.c
     export PATH=$PATH:/usr/local/mpich//install/bin
