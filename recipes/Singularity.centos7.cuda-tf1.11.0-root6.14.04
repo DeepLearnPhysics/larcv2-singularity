@@ -48,6 +48,10 @@ Version centos7-tf1.11.0-torch0.4.1
     # yum basics
     yum update -y
     yum groupinstall -y "Development Tools"
+    sudo yum install centos-release-scl
+    sudo yum install devtoolset-7-gcc*
+    scl enable devtoolset-7
+    yum install -y dev
     yum install -y epel-release
     yum install -y wget emacs vim 
     yum install -y PyQt4 PyQt4-devel
@@ -55,77 +59,77 @@ Version centos7-tf1.11.0-torch0.4.1
     yum install -y python-devel python-pip  python-setuptools
     yum install -y hdf5
 #
-
-    # install MPICH
-    wget -q http://www.mpich.org/static/downloads/3.2.1/mpich-3.2.1.tar.gz
-    tar xf mpich-3.2.1.tar.gz
-    rm mpich-3.2.1.tar.gz
-    cd mpich-3.2.1
-    # disable the addition of the RPATH to compiled executables
-    # this allows us to override the MPI libraries to use those
-    # found via LD_LIBRARY_PATH
-    ./configure --prefix=/usr/local/mpich/install --disable-wrapper-rpath
-    make -j 4 install
-    # add to local environment to build pi.c
-    export PATH=$PATH:/usr/local/mpich//install/bin
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/mpich//install/lib
-    env | sort
-    cd ..
-    rm -rf mpich-3.2.1
-
-    # nccl2
-    git clone https://github.com/NVIDIA/nccl.git
-    cd nccl;
-    make -j src.build
-    make pkg.redhat.build
-    rpm -i build/pkg/rpm/x86_64/libnccl* 
-    cd -
-    rm -rf nccl/
-
-    # ROOT
-    wget https://root.cern.ch/download/root_v6.14.04.Linux-centos7-x86_64-gcc4.8.tar.gz
-    tar -xzf root_v6.14.04.Linux-centos7-x86_64-gcc4.8.tar.gz
-    rm root_v6.14.04.Linux-centos7-x86_64-gcc4.8.tar.gz
-    mv root /usr/local/root
-    export ROOTSYS=/usr/local/root
-    export PATH=${ROOTSYS}/bin:${PATH}
-    export LD_LIBRARY_PATH=${ROOTSYS}/lib:${LD_LIBRARY_PATH}
-    export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
-
-    # pip basics
-    pip --no-cache-dir --disable-pip-version-check install --upgrade setuptools 
-    pip --no-cache-dir --disable-pip-version-check install 'matplotlib<3.0' # for python2.7
-    pip --no-cache-dir --disable-pip-version-check install 'ipython<6.0'    # for python2.7
-    pip --no-cache-dir --disable-pip-version-check install 'ipykernel<5.0'  # for python2.7
-    pip --no-cache-dir --disable-pip-version-check install numpy wheel zmq six pygments pyyaml cython gputil psutil humanize h5py tqdm scipy seaborn tables
-    pip --no-cache-dir --disable-pip-version-check install  pandas scikit-image scikit-learn Pillow opencv-python
-    pip --no-cache-dir --disable-pip-version-check install jupyter notebook
-
-    # tensorflow
-    pip --no-cache-dir --disable-pip-version-check install --upgrade tensorflow-gpu==1.11.0
-    pip --no-cache-dir --disable-pip-version-check install tensorboard
-
-    # keras
-    pip --no-cache-dir --disable-pip-version-check install keras
-
-    # torch
-    pip --no-cache-dir --disable-pip-version-check install torch==0.4.1
-    pip --no-cache-dir --disable-pip-version-check install torchvision==0.2.1
-    
-    # mpi4py
-    pip --no-cache-dir --disable-pip-version-check install mpi4py
-
-
-    # Workaround to build horovod without needing cuda libraries available:
-    # temporary add stub drivers to ld.so.cache
-    ldconfig /usr/local/cuda/lib64/stubs
-
-    # install Horovod, add other HOROVOD_* environment variables as necessary
-    # HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_NCCL_HOME=/path/to/nccl pip install --no-cache-dir horovod
-    HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_WITH_TENSORFLOW=1 pip install --no-cache-dir horovod
-
-    # revert to standard libraries
-    ldconfig
+#
+#    # install MPICH
+#    wget -q http://www.mpich.org/static/downloads/3.2.1/mpich-3.2.1.tar.gz
+#    tar xf mpich-3.2.1.tar.gz
+#    rm mpich-3.2.1.tar.gz
+#    cd mpich-3.2.1
+#    # disable the addition of the RPATH to compiled executables
+#    # this allows us to override the MPI libraries to use those
+#    # found via LD_LIBRARY_PATH
+#    ./configure --prefix=/usr/local/mpich/install --disable-wrapper-rpath
+#    make -j 4 install
+#    # add to local environment to build pi.c
+#    export PATH=$PATH:/usr/local/mpich//install/bin
+#    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/mpich//install/lib
+#    env | sort
+#    cd ..
+#    rm -rf mpich-3.2.1
+#
+#    # nccl2
+#    git clone https://github.com/NVIDIA/nccl.git
+#    cd nccl;
+#    make -j src.build
+#    make pkg.redhat.build
+#    rpm -i build/pkg/rpm/x86_64/libnccl* 
+#    cd -
+#    rm -rf nccl/
+#
+#    # ROOT
+#    wget https://root.cern.ch/download/root_v6.14.04.Linux-centos7-x86_64-gcc4.8.tar.gz
+#    tar -xzf root_v6.14.04.Linux-centos7-x86_64-gcc4.8.tar.gz
+#    rm root_v6.14.04.Linux-centos7-x86_64-gcc4.8.tar.gz
+#    mv root /usr/local/root
+#    export ROOTSYS=/usr/local/root
+#    export PATH=${ROOTSYS}/bin:${PATH}
+#    export LD_LIBRARY_PATH=${ROOTSYS}/lib:${LD_LIBRARY_PATH}
+#    export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
+#
+#    # pip basics
+#    pip --no-cache-dir --disable-pip-version-check install --upgrade setuptools 
+#    pip --no-cache-dir --disable-pip-version-check install 'matplotlib<3.0' # for python2.7
+#    pip --no-cache-dir --disable-pip-version-check install 'ipython<6.0'    # for python2.7
+#    pip --no-cache-dir --disable-pip-version-check install 'ipykernel<5.0'  # for python2.7
+#    pip --no-cache-dir --disable-pip-version-check install numpy wheel zmq six pygments pyyaml cython gputil psutil humanize h5py tqdm scipy seaborn tables
+#    pip --no-cache-dir --disable-pip-version-check install  pandas scikit-image scikit-learn Pillow opencv-python
+#    pip --no-cache-dir --disable-pip-version-check install jupyter notebook
+#
+#    # tensorflow
+#    pip --no-cache-dir --disable-pip-version-check install --upgrade tensorflow-gpu==1.11.0
+#    pip --no-cache-dir --disable-pip-version-check install tensorboard
+#
+#    # keras
+#    pip --no-cache-dir --disable-pip-version-check install keras
+#
+#    # torch
+#    pip --no-cache-dir --disable-pip-version-check install torch==0.4.1
+#    pip --no-cache-dir --disable-pip-version-check install torchvision==0.2.1
+    #
+#    # mpi4py
+#    pip --no-cache-dir --disable-pip-version-check install mpi4py
+#
+#
+#    # Workaround to build horovod without needing cuda libraries available:
+#    # temporary add stub drivers to ld.so.cache
+#    ldconfig /usr/local/cuda/lib64/stubs
+#
+#    # install Horovod, add other HOROVOD_* environment variables as necessary
+#    # HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_NCCL_HOME=/path/to/nccl pip install --no-cache-dir horovod
+#    HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_WITH_TENSORFLOW=1 pip install --no-cache-dir horovod
+#
+#    # revert to standard libraries
+#    ldconfig
 
 
 
