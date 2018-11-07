@@ -44,10 +44,10 @@ Version centos7-mkldnn-tf1.11.0-torch0.4.1
     pip --no-cache-dir --disable-pip-version-check install jupyter notebook
 
 
-#    # Install bazel to build tensorflow:
-#    wget https://copr.fedorainfracloud.org/coprs/vbatts/bazel/repo/epel-7/vbatts-bazel-epel-7.repo
-#    cp vbatts-bazel-epel-7.repo /etc/yum.repos.d/
-#    yum install -y bazel
+    # Install bazel to build tensorflow:
+    wget https://copr.fedorainfracloud.org/coprs/vbatts/bazel/repo/epel-7/vbatts-bazel-epel-7.repo
+    cp vbatts-bazel-epel-7.repo /etc/yum.repos.d/
+    yum install -y bazel
 
 
 #    # Clone the tensorflow library:
