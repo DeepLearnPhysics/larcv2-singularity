@@ -27,7 +27,7 @@ Version centos7-tf1.11.0-torch0.4.1
     export CUDA_DEVICE_ORDER=PCI_BUS_ID
 
     # for CUDA and CUPTI
-    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib64/stubs:/usr/local/cuda/extras/CUPTI/lib64/:${ROOTSYS}/lib:${LD_LIBRARY_PATH}
+    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64/:${ROOTSYS}/lib:${LD_LIBRARY_PATH}
 
     # for ROOT
     export ROOTSYS=/usr/local/root
