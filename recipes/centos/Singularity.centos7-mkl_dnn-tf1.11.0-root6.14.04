@@ -13,11 +13,11 @@ To start your container simply try
 singularity exec THIS_CONTAINER.simg bash
 
 To use GPUs, try
-singularity exec --nv THIS_CONTAINER.simg bash
+singularity exec THIS_CONTAINER.simg bash
 
 %labels
 Maintainer coreyjadams
-Version centos7-tf1.11.0-torch0.4.1
+Version centos7-mkldnn-tf1.11.0-torch0.4.1
 
 #------------
 # Global installation
