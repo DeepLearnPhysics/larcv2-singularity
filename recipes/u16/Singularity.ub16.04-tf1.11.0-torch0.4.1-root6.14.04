@@ -1,5 +1,6 @@
 Bootstrap: docker
-From: nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+From: DeepLearnPhysics/larcv2-singularity:ub16.04-tf1.11.0-torch0.4.1
+
 
 %help
 Ubuntu16.04 with cuda9.0 cudnn7
@@ -23,9 +24,7 @@ Version ub16.04-tf1.11.0-torch0.4.1-root6.14.04
 # Global installation
 #------------
 %environment
-    # for system
-    export XDG_RUNTIME_DIR=/tmp/$USER
-    export CUDA_DEVICE_ORDER=PCI_BUS_ID
+
     # for ROOT
     export ROOTSYS=/usr/local/root
     export PATH=${ROOTSYS}/bin:${PATH}
@@ -33,29 +32,7 @@ Version ub16.04-tf1.11.0-torch0.4.1-root6.14.04
     export LD_LIBRARY_PATH=${ROOTSYS}/lib:${LD_LIBRARY_PATH}
 
 
-    # for MPICH:
-    export PATH=/usr/local/mpich/install/bin/:${PATH}
-    export LD_LIBRARY_PATH=/usr/local/mpich/install/lib/:${LD_LIBRARY_PATH}
-
-
 %post
-
-    # apt-get
-    apt-get -y update
-    apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev git wget emacs vim openssh-client
-    apt-get -y install python-dev python-tk python-pip python-qt4 python-setuptools
-    apt-get -y install python3-setuptools
-    apt-get -y install libhdf5-dev
-    apt-get -y install devscripts debhelper
-
-
-    # asciinema
-    apt-get install -y locales
-    locale-gen en_US.UTF-8
-    apt-get -y install software-properties-common python-software-properties
-    apt-add-repository -y ppa:zanchey/asciinema
-    apt-get -y update
-    apt-get -y install asciinema
 
     # ROOT
     wget https://root.cern.ch/download/root_v6.14.04.Linux-ubuntu16-x86_64-gcc5.4.tar.gz
@@ -66,38 +43,3 @@ Version ub16.04-tf1.11.0-torch0.4.1-root6.14.04
     export PATH=${ROOTSYS}/bin:${PATH}
     export LD_LIBRARY_PATH=${ROOTSYS}/lib:${LD_LIBRARY_PATH}
     export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
-
-    # pip basics
-    pip --no-cache-dir --disable-pip-version-check install --upgrade setuptools
-    pip --no-cache-dir --disable-pip-version-check install 'matplotlib<3.0' # for python2.7
-    pip --no-cache-dir --disable-pip-version-check install 'ipython<6.0'    # for python2.7
-    pip --no-cache-dir --disable-pip-version-check install 'ipykernel<5.0'  # for python2.7
-    pip --no-cache-dir --disable-pip-version-check install numpy wheel zmq six pygments pyyaml cython gputil psutil humanize h5py tqdm scipy seaborn tables
-    pip --no-cache-dir --disable-pip-version-check install pandas scikit-image scikit-learn Pillow opencv-python
-    pip --no-cache-dir --disable-pip-version-check install jupyter notebook
-
-    # tensorflow
-    pip --no-cache-dir --disable-pip-version-check install --upgrade tensorflow-gpu==1.11.0
-    pip --no-cache-dir --disable-pip-version-check install tensorboard
-
-    # keras
-    pip --no-cache-dir --disable-pip-version-check install keras
-
-    # torch
-    pip --no-cache-dir --disable-pip-version-check install torch==0.4.1
-    pip --no-cache-dir --disable-pip-version-check install torchvision==0.2.1
-
-    # horovod and mpi4py
-    pip --no-cache-dir --disable-pip-version-check install mpi4py
-
-
-    # Workaround to build horovod without needing cuda libraries available:
-    # temporary add stub drivers to ld.so.cache
-    ldconfig /usr/local/cuda/lib64/stubs
-
-    # install Horovod, add other HOROVOD_* environment variables as necessary
-    # HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_NCCL_HOME=/path/to/nccl pip install --no-cache-dir horovod
-    HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_WITH_TENSORFLOW=1 HOROVOD_NCCL_HOME=/nccl/build/ pip install --no-cache-dir horovod
-
-    # revert to standard libraries
-    ldconfig

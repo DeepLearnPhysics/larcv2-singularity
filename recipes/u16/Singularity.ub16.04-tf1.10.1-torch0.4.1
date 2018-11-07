@@ -38,14 +38,6 @@ Version ub16.04-tf1.10.1-torch0.4.1
     apt-get -y install devscripts debhelper
 
 
-    # nccl2
-    git clone https://github.com/NVIDIA/nccl.git
-    cd nccl;
-    make -j src.build
-    make pkg.debian.build
-    dpkg -i build/pkg/deb/libnccl* 
-    cd -
-
     # asciinema
     apt-get install -y locales
     locale-gen en_US.UTF-8
@@ -72,7 +64,4 @@ Version ub16.04-tf1.10.1-torch0.4.1
     pip --no-cache-dir --disable-pip-version-check install torch==0.4.1
     pip --no-cache-dir --disable-pip-version-check install torchvision==0.2.1
     
-    #mpi and horovod
-    pip --no-cache-dir --disable-pip-version-check install mpi4py
-    pip --no-cache-dir --disable-pip-version-check install horovod==0.15.0
 
