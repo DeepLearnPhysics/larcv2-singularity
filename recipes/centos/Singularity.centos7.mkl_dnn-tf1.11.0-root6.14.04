@@ -16,7 +16,7 @@ To use GPUs, try
 singularity exec --nv THIS_CONTAINER.simg bash
 
 %labels
-Maintainer drinkingkazu
+Maintainer coreyjadams
 Version centos7-tf1.11.0-torch0.4.1
 
 #------------

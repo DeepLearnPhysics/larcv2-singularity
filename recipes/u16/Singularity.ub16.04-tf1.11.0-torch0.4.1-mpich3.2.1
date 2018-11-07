@@ -1,0 +1,67 @@
+Bootstrap: docker
+From: DeepLearnPhysics/larcv2-singularity:ub16.04-tf1.11.0-torch0.4.1-root6.14.04
+
+%help
+Ubuntu16.04 with cuda9.0 cudnn7
+ML/DL packages  : tensorflow keras torch sc-learn nccl
+Sci.  packages  : numpy pandas sc-image matplotlib opencv-python
+Basic python    : ipython jupyter yaml pygments six zmq wheel h5py tqdm mpi4py horovod
+Development kit : g++/gcc cython nvcc libqt4-dev python-dev
+Utility kit     : git wget emacs vim openssh-client mpich
+
+To start your container simply try
+singularity exec THIS_CONTAINER.simg bash
+
+To use GPUs, try
+singularity exec --nv THIS_CONTAINER.simg bash
+
+%labels
+Maintainer drinkingkazu
+Version ub16.04-tf1.11.0-torch0.4.1
+
+#------------
+# Global installation
+#------------
+%environment
+    # for system
+    export XDG_RUNTIME_DIR=/tmp/$USER
+    export CUDA_DEVICE_ORDER=PCI_BUS_ID
+
+
+    # for MPICH:
+    export PATH=/usr/local/mpich/install/bin/:${PATH}
+    export LD_LIBRARY_PATH=/usr/local/mpich/install/lib/:${LD_LIBRARY_PATH}
+
+
+
+%post
+
+    # nccl2
+    git clone https://github.com/NVIDIA/nccl.git
+    cd nccl;
+    make -j src.build
+    make pkg.debian.build
+    dpkg -i build/pkg/deb/libnccl* 
+    cd -
+
+    
+    # install MPICH
+    wget -q http://www.mpich.org/static/downloads/3.2.1/mpich-3.2.1.tar.gz
+    tar xf mpich-3.2.1.tar.gz
+    rm mpich-3.2.1.tar.gz
+    cd mpich-3.2.1
+    # disable the addition of the RPATH to compiled executables
+    # this allows us to override the MPI libraries to use those
+    # found via LD_LIBRARY_PATH
+    ./configure --prefix=/usr/local/mpich/install --disable-wrapper-rpath --disable-fortran
+    make -j 4 install
+    # add to local environment to build pi.c
+    export PATH=$PATH:/usr/local/mpich//install/bin
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/mpich//install/lib
+    env | sort
+    cd ..
+    rm -rf mpich-3.2.1
+    
+    # mpi and horovod
+    pip --no-cache-dir --disable-pip-version-check install mpi4py
+    pip --no-cache-dir --disable-pip-version-check install horovod==0.15.0

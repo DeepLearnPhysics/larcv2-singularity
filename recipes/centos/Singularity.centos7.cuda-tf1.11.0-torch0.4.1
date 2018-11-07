@@ -1,13 +1,13 @@
 Bootstrap: docker
-From: nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+From: nvidia/cuda:9.0-cudnn7-devel-centos7
 
 %help
-Ubuntu16.04 with cuda9.0 cudnn7
-ML/DL packages  : tensorflow keras torch sc-learn nccl
+Centos7 with cuda9.0 cudnn7
+ML/DL packages  : tensorflow keras sc-learn nccl
 Sci.  packages  : numpy pandas sc-image matplotlib opencv-python
 Basic python    : ipython jupyter yaml pygments six zmq wheel h5py tqdm mpi4py horovod
 Development kit : g++/gcc cython nvcc libqt4-dev python-dev
-Utility kit     : git wget emacs vim openssh-client openmpi
+Utility kit     : git wget emacs vim openssh-client mpich
 
 To start your container simply try
 singularity exec THIS_CONTAINER.simg bash
@@ -16,44 +16,31 @@ To use GPUs, try
 singularity exec --nv THIS_CONTAINER.simg bash
 
 %labels
-Maintainer drinkingkazu
-Version ub16.04-tf1.11.0-torch0.4.1
+Maintainer coreyjadams
+Version centos7-tf1.11.0-torch0.4.1
 
 #------------
 # Global installation
 #------------
 %environment
+    ldconfig
+    
     # for system
-    export XDG_RUNTIME_DIR=/tmp/$USER
     export CUDA_DEVICE_ORDER=PCI_BUS_ID
 
+
 %post
-
-    # apt-get
-    apt-get -y update
-    apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev git wget emacs vim openssh-client zip libopenmpi-dev
-    apt-get -y install python-dev python-tk python-pip python-qt4 python-setuptools
-    apt-get -y install python3-setuptools
-    apt-get -y install libhdf5-dev
-    apt-get -y install devscripts debhelper
-
-
-    # nccl2
-    git clone https://github.com/NVIDIA/nccl.git
-    cd nccl;
-    make -j src.build
-    make pkg.debian.build
-    dpkg -i build/pkg/deb/libnccl* 
-    cd -
-
     
-    # asciinema
-    apt-get install -y locales
-    locale-gen en_US.UTF-8
-    apt-get -y install software-properties-common python-software-properties
-    apt-add-repository -y ppa:zanchey/asciinema
-    apt-get -y update
-    apt-get -y install asciinema
+    # yum basics
+    yum update -y
+    yum groupinstall -y "Development Tools"
+    yum install -y epel-release
+    yum install -y wget emacs vim 
+    yum install -y PyQt4 PyQt4-devel
+    yum install -y emacs vim openssh-clients zip 
+    yum install -y python-devel python-pip  python-setuptools
+    yum install -y hdf5
+
 
     # pip basics
     pip --no-cache-dir --disable-pip-version-check install --upgrade setuptools 
@@ -74,7 +61,6 @@ Version ub16.04-tf1.11.0-torch0.4.1
     # torch
     pip --no-cache-dir --disable-pip-version-check install torch==0.4.1
     pip --no-cache-dir --disable-pip-version-check install torchvision==0.2.1
-    
-    # mpi and horovod
-    pip --no-cache-dir --disable-pip-version-check install mpi4py
-    pip --no-cache-dir --disable-pip-version-check install horovod==0.15.0
+
+
+
