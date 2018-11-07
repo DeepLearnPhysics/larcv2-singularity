@@ -1,5 +1,8 @@
-Bootstrap: docker
-From: DeepLearnPhysics/larcv2-singularity:ub16.04-tf1.11.0-torch0.4.1
+#Bootstrap: docker
+#From: DeepLearnPhysics/larcv2-singularity:ub16.04-tf1.11.0-torch0.4.1
+
+Bootstrap: localimage
+From: /home/cadams/DeepLearnPhysics/larcv2-singularity/centos7-tf1.11.0-torch0.4.1
 
 
 %help
