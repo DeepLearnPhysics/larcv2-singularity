@@ -44,24 +44,24 @@ Version centos7-mkldnn-tf1.11.0-torch0.4.1
     pip --no-cache-dir --disable-pip-version-check install jupyter notebook
 
 
-    # Install bazel to build tensorflow:
-    wget https://copr.fedorainfracloud.org/coprs/vbatts/bazel/repo/epel-7/vbatts-bazel-epel-7.repo
-    cp vbatts-bazel-epel-7.repo /etc/yum.repos.d/
-    yum install -y bazel
+#    # Install bazel to build tensorflow:
+#    wget https://copr.fedorainfracloud.org/coprs/vbatts/bazel/repo/epel-7/vbatts-bazel-epel-7.repo
+#    cp vbatts-bazel-epel-7.repo /etc/yum.repos.d/
+#    yum install -y bazel
 
 
-    # Clone the tensorflow library:
-    git clone https://github.com/tensorflow/tensorflow.git
+#    # Clone the tensorflow library:
+#    git clone https://github.com/tensorflow/tensorflow.git
 
-    # Build tensorflow with bazel:
-    bazel build --config=mkl -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-mavx512f --copt=-mavx512pf --copt=-mavx512cd --copt=-mavx512er //tensorflow/tools/pip_package:build_pip_package
+#    # Build tensorflow with bazel:
+#    bazel build --config=mkl -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-mavx512f --copt=-mavx512pf --copt=-mavx512cd --copt=-mavx512er //tensorflow/tools/pip_package:build_pip_package
 
-    # Build the wheel:
-    bazel-bin/tensorflow/tools/pip_package/build_pip_package ~/path_to_save_wheel
+#    # Build the wheel:
+#    bazel-bin/tensorflow/tools/pip_package/build_pip_package ~/path_to_save_wheel
 
-    # Install the wheel:
-    pip install --upgrade --user ~/path_to_save_wheel
+#    # Install the wheel:
+#    pip install --upgrade --user ~/path_to_save_wheel
 
-    # # keras
-    # pip --no-cache-dir --disable-pip-version-check install keras
+#    # # keras
+#    # pip --no-cache-dir --disable-pip-version-check install keras
 
