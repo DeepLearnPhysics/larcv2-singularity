@@ -1,5 +1,8 @@
-Bootstrap: shub
-From: coreyjadams/larcv2-singularity:centos7-tf1.11.0-torch0.4.1
+#Bootstrap: shub
+#From: coreyjadams/larcv2-singularity:centos7-tf1.11.0-torch0.4.1
+
+Bootstrap: localimage
+From: /home/cadams/DeepLearnPhysics/larcv2-singularity/centos7-tf1.11.0-torch0.4.1
 
 %help
 Centos7 with cuda9.0 cudnn7
