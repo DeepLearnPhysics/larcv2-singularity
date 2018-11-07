@@ -34,6 +34,9 @@ Version ub16.04-tf1.11.0-torch0.4.1
 
 %post
 
+    apt-get -y install devscripts debhelper
+
+
     # nccl2
     git clone https://github.com/NVIDIA/nccl.git
     cd nccl;
