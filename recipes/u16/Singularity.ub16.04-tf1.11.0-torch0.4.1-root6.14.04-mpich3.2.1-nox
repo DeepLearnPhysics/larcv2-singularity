@@ -31,11 +31,10 @@ Version ub16.04-tf1.11.0-torch0.4.1
 %post
 
     # This text needs to be in the Xorg.conf file:
-    cat " \
-Section "Device" \
-    Identifier     "Device0" \
-    Driver         "nvidia" \
-    VendorName     "NVIDIA Corporation" \
-    Option         "Interactive" 0 \
-EndSection \
-" &> /etc/X11/xorg.conf
+
+    echo "Section \"Device\"" >> /etc/X11/xorg.conf
+    echo "    Identifier     \"Device0\" " >> /etc/X11/xorg.conf
+    echo "    Driver         \"nvidia\" " >> /etc/X11/xorg.conf
+    echo "    VendorName     \"NVIDIA Corporation\" " >> /etc/X11/xorg.conf
+    echo "    Option         \"Interactive\" 0 " >> /etc/X11/xorg.conf
+    echo "EndSection" >> /etc/X11/xorg.conf
