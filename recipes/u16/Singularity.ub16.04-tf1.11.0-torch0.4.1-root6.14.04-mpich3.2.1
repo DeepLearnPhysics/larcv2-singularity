@@ -63,6 +63,16 @@ Version ub16.04-tf1.11.0-torch0.4.1
     cd ..
     rm -rf mpich-3.2.1
     
+    # This text needs to be in the Xorg.conf file:
+
+    echo "Section \"Device\"" >> /etc/X11/xorg.conf
+    echo "    Identifier     \"Device0\" " >> /etc/X11/xorg.conf
+    echo "    Driver         \"nvidia\" " >> /etc/X11/xorg.conf
+    echo "    VendorName     \"NVIDIA Corporation\" " >> /etc/X11/xorg.conf
+    echo "    Option         \"Interactive\" 0 " >> /etc/X11/xorg.conf
+    echo "EndSection" >> /etc/X11/xorg.conf
+
+    
     # mpi and horovod
     pip --no-cache-dir --disable-pip-version-check install mpi4py
 

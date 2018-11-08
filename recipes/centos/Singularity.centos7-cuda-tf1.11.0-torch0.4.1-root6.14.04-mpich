@@ -62,6 +62,15 @@ Version centos7-tf1.11.0-torch0.4.1-root6.14.04
     rpm -i build/pkg/rpm/x86_64/libnccl* 
     cd -
 
+    # This text needs to be in the Xorg.conf file (allows to disable the watchdog):
+
+    echo "Section \"Device\"" >> /etc/X11/xorg.conf
+    echo "    Identifier     \"Device0\" " >> /etc/X11/xorg.conf
+    echo "    Driver         \"nvidia\" " >> /etc/X11/xorg.conf
+    echo "    VendorName     \"NVIDIA Corporation\" " >> /etc/X11/xorg.conf
+    echo "    Option         \"Interactive\" 0 " >> /etc/X11/xorg.conf
+    echo "EndSection" >> /etc/X11/xorg.conf
+
 
     # Add mpi4py and horovod:
     pip --no-cache-dir --disable-pip-version-check install mpi4py
