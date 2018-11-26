@@ -29,17 +29,8 @@ Version ub16.04-pytorchdev10152018-root6.14.04
 
 %post
 
-    # asciinema
-    apt-get install -y locales
-    locale-gen en_US.UTF-8
-    apt-get -y install software-properties-common python-software-properties
-    apt-add-repository -y ppa:zanchey/asciinema
-    apt-get -y update
-    apt-get -y install asciinema
-
     # make wheelfile readable
-    chmod 744 /usr/lib/python2.7/dist-packages/.wh*
-    chmod 744 .wh.easy_install.py
-    chmod 744 .wh.pkg_resources
-    chmod 744 .wh.setuptools-20.7.0.egg-info
-    chmod 744 .wh.setuptools
+    chmod 744 /usr/lib/python2.7/dist-packages/.wh.easy_install.py
+    chmod 744 /usr/lib/python2.7/dist-packages/.wh.pkg_resources
+    chmod 744 /usr/lib/python2.7/dist-packages/.wh.setuptools-20.7.0.egg-info
+    chmod 744 /usr/lib/python2.7/dist-packages/.wh.setuptools
