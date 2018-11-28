@@ -33,8 +33,8 @@ Version centos7-tf1.12.0-torch0.4.1
     mkdir /app
     cd /app
 
-    # Install google operational research tools:
-    wget https://github.com/google/or-tools/releases/download/v6.10/or-tools_centos-7_v6.10.6025.tar.gz
-    tar -xf or-tools_centos-7_v6.10.6025.tar.gz
-    cd or-tools_CentOS-7.5.1804-64bit_v6.10.6025
-    make install_cc
+    # Install the necessary hash functions:
+    git clone https://github.com/sparsehash/sparsehash.git
+    cd sparsehash
+    ./configure
+    make -j install
