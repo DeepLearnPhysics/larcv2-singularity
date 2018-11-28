@@ -1,0 +1,40 @@
+#Bootstrap: shub
+#From: coreyjadams/larcv2-singularity:centos7-tf1.12.0-torchnightly
+
+Bootstrap: localimage
+From: /home/cadams/DeepLearnPhysics/larcv2-singularity/centos7-tf1.12.0-torchnightly
+
+%help
+Centos7 with cuda9.0 cudnn7
+ML/DL packages  : tensorflow keras sc-learn submanifold-sparse-convolutional-networks
+Sci.  packages  : numpy pandas sc-image matplotlib opencv-python
+Basic python    : ipython jupyter yaml pygments six zmq wheel h5py tqdm 
+Development kit : g++/gcc cython nvcc libqt4-dev python-dev
+Utility kit     : git wget emacs vim openssh-client
+
+To start your container simply try
+singularity exec THIS_CONTAINER.simg bash
+
+To use GPUs, try
+singularity exec --nv THIS_CONTAINER.simg bash
+
+%labels
+Maintainer coreyjadams
+Version centos7-tf1.12.0-torch0.4.1
+
+#------------
+# Global installation
+#------------
+%environment
+    
+%post
+    
+    # Using the app area to store software:
+    mkdir /app
+    cd /app
+
+    # Install google operational research tools:
+    wget https://github.com/google/or-tools/releases/download/v6.10/or-tools_centos-7_v6.10.6025.tar.gz
+    tar -xf or-tools_centos-7_v6.10.6025.tar.gz
+    cd or-tools_CentOS-7.5.1804-64bit_v6.10.6025
+    make install_cc
