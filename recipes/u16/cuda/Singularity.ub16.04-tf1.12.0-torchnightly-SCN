@@ -32,3 +32,8 @@ Version ub16.04-tf1.12.0-torch0.4.1
 
 
     apt-get install -y sparsehash
+
+    
+    # torch
+    pip --no-cache-dir --disable-pip-version-check install torch_nightly==1.0.0.dev20181015 -f https://download.pytorch.org/whl/nightly/cu90/torch_nightly.html
+    pip --no-cache-dir --disable-pip-version-check install torchvision
