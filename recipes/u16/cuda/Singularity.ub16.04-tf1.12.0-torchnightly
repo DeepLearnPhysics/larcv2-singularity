@@ -16,7 +16,7 @@ To use GPUs, try
 singularity exec --nv THIS_CONTAINER.simg bash
 
 %labels
-Maintainer drinkingkazu
+Maintainer drinkingkazu, cadams
 Version ub16.04-tf1.11.0-torch0.4.1
 
 #------------
@@ -27,11 +27,14 @@ Version ub16.04-tf1.11.0-torch0.4.1
     export XDG_RUNTIME_DIR=/tmp/$USER
     export CUDA_DEVICE_ORDER=PCI_BUS_ID
 
+    # Add cupti to the path for profiling:
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/extras/CUPTI/lib64
+
 %post
 
     # apt-get
     apt-get -y update
-    apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev git wget emacs vim openssh-client zip libopenmpi-dev
+    apt-get -y install dpkg-dev g++ gcc binutils libqt4-dev git wget emacs vim openssh-client zip 
     apt-get -y install python-dev python-tk python-pip python-qt4 python-setuptools
     apt-get -y install python3-setuptools
     apt-get -y install libhdf5-dev
