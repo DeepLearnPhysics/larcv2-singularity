@@ -4,7 +4,7 @@ From: intelaipg/intel-optimized-tensorflow:latest-devel-py3
 
 %help
 Centos7 with mkl_dnn tensorflow
-ML/DL packages  : tensorflow keras sc-learn
+ML/DL packages  : tensorflow sc-learn
 Sci.  packages  : numpy pandas sc-image matplotlib opencv-python
 Basic python    : ipython jupyter yaml pygments six zmq wheel h5py tqdm
 Development kit : g++/gcc cython libqt4-dev python-dev
@@ -25,3 +25,27 @@ Version centos7-mkldnn-tf1.11.0-torch0.4.1
 
 %post
 
+
+    # yum basics
+    yum update -y
+    yum groupinstall -y "Development Tools"
+    yum install -y epel-release
+    yum install -y wget emacs vim 
+    yum install -y PyQt4 PyQt4-devel
+    yum install -y emacs vim openssh-clients zip 
+    yum install -y python-devel python-pip  python-setuptools
+    yum install -y hdf5
+
+
+    # pip basics
+    pip --no-cache-dir --disable-pip-version-check install --upgrade setuptools 
+    pip --no-cache-dir --disable-pip-version-check install 'matplotlib<3.0' # for python2.7
+    pip --no-cache-dir --disable-pip-version-check install 'ipython<6.0'    # for python2.7
+    pip --no-cache-dir --disable-pip-version-check install 'ipykernel<5.0'  # for python2.7
+    pip --no-cache-dir --disable-pip-version-check install numpy wheel zmq six pygments pyyaml cython gputil psutil humanize h5py tqdm scipy seaborn tables
+    pip --no-cache-dir --disable-pip-version-check install  pandas scikit-image scikit-learn Pillow opencv-python
+    pip --no-cache-dir --disable-pip-version-check install jupyter notebook
+
+    # Installing tensorflow with mkl is not a simple process.  This takes awhile to run:
+
+    
