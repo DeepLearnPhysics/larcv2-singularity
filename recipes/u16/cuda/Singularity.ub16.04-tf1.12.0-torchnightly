@@ -42,6 +42,7 @@ Version ub16.04-tf1.11.0-torch0.4.1
 
     # pip basics
     pip --no-cache-dir --disable-pip-version-check install --upgrade setuptools 
+    pip --no-cache-dir --disable-pip-version-check install futures
     pip --no-cache-dir --disable-pip-version-check install 'matplotlib<3.0' # for python2.7
     pip --no-cache-dir --disable-pip-version-check install 'ipython<6.0'    # for python2.7
     pip --no-cache-dir --disable-pip-version-check install 'ipykernel<5.0'  # for python2.7
