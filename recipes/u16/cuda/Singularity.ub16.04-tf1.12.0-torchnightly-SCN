@@ -32,6 +32,15 @@ Version ub16.04-tf1.12.0-torch0.4.1
     # Install sparsehash, needed for Submanifold Sparse Convolutions in pytorch
     apt-get install -y libsparsehash-dev
 
+    mkdir /apps/
+    cd /apps/
+
+    git clone https://github.com/facebookresearch/SparseConvNet 
+    cd SparseConvNet
+    # This is need to build against the mid-october pytorch release.
+    git checkout 9aea4e059b14660cc9c14860a7e73f54516379de
+    python setup.py install
+
 
 
 
