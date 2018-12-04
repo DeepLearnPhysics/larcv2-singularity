@@ -2,7 +2,7 @@
 #From: DeepLearnPhysics/larcv2-singularity/ub16.04-tf1.12.0-torchnightly
 
 Bootstrap: localimage
-From: /home/cadams/DeepLearnPhysics/larcv2-singularity/ub16.04-tf1.12.0-torchnightly-mpich3.2.1
+From: /home/cadams/DeepLearnPhysics/larcv2-singularity/ub16.04-tf1.12.0-torchnightly-SCN-mpich3.2.1
 
 
 %help
