@@ -63,6 +63,8 @@ Version ub16.04-tf1.12.0-torchnightly-mpich3.2.1
     cd ..
     rm -rf mpich-3.2.1
     
+    # Include mesh tensorflow for model parallelism
+    pip install mesh-tensorflow
     
     # mpi and horovod
     pip --no-cache-dir --disable-pip-version-check install mpi4py
