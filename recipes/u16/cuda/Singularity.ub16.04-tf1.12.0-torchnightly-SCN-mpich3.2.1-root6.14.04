@@ -1,8 +1,8 @@
 #Bootstrap: docker
-#From: DeepLearnPhysics/larcv2-singularity:ub16.04-tf1.11.0-torch0.4.1
+#From: DeepLearnPhysics/larcv2-singularity/ub16.04-tf1.12.0-torchnightly
 
 Bootstrap: localimage
-From: /home/cadams/DeepLearnPhysics/larcv2-singularity/ub16.04-tf1.11.0-torch0.4.1
+From: /home/cadams/DeepLearnPhysics/larcv2-singularity/ub16.04-tf1.12.0-torchnightly-mpich-3.2.1
 
 
 %help
@@ -20,8 +20,8 @@ To use GPUs, try
 singularity exec --nv THIS_CONTAINER.simg bash
 
 %labels
-Maintainer drinkingkazu
-Version ub16.04-tf1.11.0-torch0.4.1-root6.14.04
+Maintainer drinkingkazu cadams
+Version ub16.04-tf1.12.0-torchnightly-mpich-3.2.1
 
 #------------
 # Global installation
