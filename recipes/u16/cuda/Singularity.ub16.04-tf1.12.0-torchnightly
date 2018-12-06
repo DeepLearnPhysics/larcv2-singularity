@@ -63,19 +63,19 @@ Version ub16.04-tf1.11.0-torch0.4.1
 
     # This is for tensorboardX
     pip --disable-pip-version-check --no-cache-dir install tensorboardX
-
-    ldconfig /usr/local/cuda/lib64/stubs
-
-    # Install sparsehash, needed for Submanifold Sparse Convolutions in pytorch
-    apt-get install -y libsparsehash-dev
-
-    mkdir /apps/
-    cd /apps/
-    git clone https://github.com/DeepLearnPhysics/SparseConvNet
-    # git clone https://github.com/facebookresearch/SparseConvNet 
-    cd SparseConvNet
-    # This is need to build against the mid-october pytorch release.
-    git checkout pytorch_dev10152018
-    python setup.py install
-    
-    ldconfig 
+#
+#    ldconfig /usr/local/cuda/lib64/stubs
+#
+#    # Install sparsehash, needed for Submanifold Sparse Convolutions in pytorch
+#    apt-get install -y libsparsehash-dev
+#
+#    mkdir /apps/
+#    cd /apps/
+#    git clone https://github.com/DeepLearnPhysics/SparseConvNet
+#    # git clone https://github.com/facebookresearch/SparseConvNet 
+#    cd SparseConvNet
+#    # This is need to build against the mid-october pytorch release.
+#    git checkout pytorch_dev10152018
+#    python setup.py install
+    #
+#    ldconfig 
