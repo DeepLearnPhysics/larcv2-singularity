@@ -71,11 +71,11 @@ Version ub16.04-tf1.11.0-torch0.4.1
 
     mkdir /apps/
     cd /apps/
-
-    git clone https://github.com/facebookresearch/SparseConvNet 
+    git clone https://github.com/DeepLearnPhysics/SparseConvNet
+    # git clone https://github.com/facebookresearch/SparseConvNet 
     cd SparseConvNet
     # This is need to build against the mid-october pytorch release.
-    git checkout 9aea4e059b14660cc9c14860a7e73f54516379de
+    git checkout pytorch_dev10152018
     python setup.py install
     
     ldconfig 
