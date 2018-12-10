@@ -36,19 +36,19 @@ Version centos7-cuda-torchnightly
     
     # yum basics
     yum update -y
-    # yum groupinstall -y "Development Tools"
-    # yum install -y epel-release
+    yum groupinstall -y "Development Tools"
+    yum install -y epel-release
     yum install -y centos-release-scl
     yum install -y devtoolset-7
     scl enable devtoolset-7 bash
     # source scl_source enable devtoolset-7
     yum install -y wget emacs vim 
     yum install -y emacs vim openssh-clients zip 
-    yum install -y python-devel python-setuptools
+    yum install -y python-devel python-pip python-setuptools
     # Install pip:
-    curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
-    python get-pip.py
-    rm get-pip.py
+    # curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+    # python get-pip.py
+    # rm get-pip.py
 
 
 
