@@ -30,14 +30,17 @@ Version centos7-cuda-torchnightly
     # Add cupti to the path for profiling:
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/extras/CUPTI/lib64
 
+    source scl_source enable devtoolset-7
+
 %post
     
     # yum basics
     yum update -y
     # yum groupinstall -y "Development Tools"
     # yum install -y epel-release
-    yum install centos-release-scl
+    yum install -y centos-release-scl
     yum install -y devtoolset-7
+    source scl_source enable devtoolset-7
 #    yum install -y wget emacs vim 
 #    yum install -y emacs vim openssh-clients zip 
 #    yum install -y python-devel python-pip  python-setuptools
