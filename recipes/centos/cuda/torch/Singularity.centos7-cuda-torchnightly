@@ -45,21 +45,21 @@ Version centos7-cuda-torchnightly
     yum install -y emacs vim openssh-clients zip 
     yum install -y python-devel python-pip  python-setuptools
 
-
-    # pip basics
-    pip --no-cache-dir --disable-pip-version-check install --upgrade setuptools 
-    pip --no-cache-dir --disable-pip-version-check install future
-    pip --no-cache-dir --disable-pip-version-check install 'matplotlib<3.0' # for python2.7
-    pip --no-cache-dir --disable-pip-version-check install 'ipython<6.0'    # for python2.7
-    pip --no-cache-dir --disable-pip-version-check install 'ipykernel<5.0'  # for python2.7
-    pip --no-cache-dir --disable-pip-version-check install numpy wheel zmq six pygments pyyaml cython gputil psutil humanize h5py tqdm scipy seaborn tables
-    pip --no-cache-dir --disable-pip-version-check install  pandas scikit-image scikit-learn Pillow opencv-python
-    pip --no-cache-dir --disable-pip-version-check install jupyter notebook
-
-
-    pip --disable-pip-version-check install torch_nightly==1.0.0.dev20181015 -f https://download.pytorch.org/whl/nightly/cu90/torch_nightly.html
-
-
-    # This is for tensorboardX
-    pip --disable-pip-version-check --no-cache-dir install tensorboardX
+#
+#    # pip basics
+#    pip --no-cache-dir --disable-pip-version-check install --upgrade setuptools 
+#    pip --no-cache-dir --disable-pip-version-check install future
+#    pip --no-cache-dir --disable-pip-version-check install 'matplotlib<3.0' # for python2.7
+#    pip --no-cache-dir --disable-pip-version-check install 'ipython<6.0'    # for python2.7
+#    pip --no-cache-dir --disable-pip-version-check install 'ipykernel<5.0'  # for python2.7
+    #pip --no-cache-dir --disable-pip-version-check install numpy wheel zmq six pygments pyyaml cython gputil psutil humanize h5py tqdm scipy seaborn tables
+#    pip --no-cache-dir --disable-pip-version-check install  pandas scikit-image scikit-learn Pillow opencv-python
+#    pip --no-cache-dir --disable-pip-version-check install jupyter notebook
+#
+#
+    #pip --disable-pip-version-check install torch_nightly==1.0.0.dev20181015 -f https://download.pytorch.org/whl/nightly/cu90/torch_nightly.html
+#
+#
+#    # This is for tensorboardX
+    #pip --disable-pip-version-check --no-cache-dir install tensorboardX
 
