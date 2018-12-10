@@ -40,7 +40,7 @@ Version centos7-cuda-torchnightly
     # yum install -y epel-release
     yum install -y centos-release-scl
     yum install -y devtoolset-7
-    source scl_source enable devtoolset-7
+    # source scl_source enable devtoolset-7
     yum install -y wget emacs vim 
     yum install -y emacs vim openssh-clients zip 
     yum install -y python-devel python-pip  python-setuptools
