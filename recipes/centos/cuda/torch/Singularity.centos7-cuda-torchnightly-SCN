@@ -41,3 +41,7 @@ Version centos7-cuda-torchnightly-SCN
     ./configure
     make -j install
 
+
+    # This installs the sparse conv net wheel that I built by hand.  It's a hack.
+
+    pip install /data1/cadams/dist/sparseconvnet-0.2-cp27-cp27mu-linux_x86_64.whl
