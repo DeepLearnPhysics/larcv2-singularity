@@ -1,8 +1,8 @@
 #Bootstrap: shub
-#From: coreyjadams/larcv2-singularity:centos7-tf1.12.0-torchnightly
+#From: coreyjadams/larcv2-singularity:centos7-cuda-torchnightly
 
 Bootstrap: localimage
-From: /home/cadams/DeepLearnPhysics/larcv2-singularity/centos7-tf1.12.0-torchnightly
+From: /home/cadams/DeepLearnPhysics/larcv2-singularity/centos7-cuda-torchnightly
 
 %help
 Centos7 with cuda9.0 cudnn7
@@ -20,7 +20,7 @@ singularity exec --nv THIS_CONTAINER.simg bash
 
 %labels
 Maintainer coreyjadams
-Version centos7-tf1.12.0-torch0.4.1
+Version centos7-cuda-torchnightly-SCN
 
 #------------
 # Global installation
@@ -38,3 +38,4 @@ Version centos7-tf1.12.0-torch0.4.1
     cd sparsehash
     ./configure
     make -j install
+

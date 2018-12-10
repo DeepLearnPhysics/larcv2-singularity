@@ -17,7 +17,7 @@ singularity exec --nv THIS_CONTAINER.simg bash
 
 %labels
 Maintainer coreyjadams
-Version centos7-tf1.11.0-torch0.4.1
+Version centos7-cuda-torchnightly
 
 #------------
 # Global installation
