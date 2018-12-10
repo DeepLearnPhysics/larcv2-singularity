@@ -40,7 +40,6 @@ Version centos7-cuda-torchnightly
     yum install -y epel-release
     yum install -y centos-release-scl
     yum install -y devtoolset-4
-    scl enable devtoolset-4 bash
     # source scl_source enable devtoolset-4
     yum install -y wget emacs vim 
     yum install -y emacs vim openssh-clients zip 
@@ -50,6 +49,16 @@ Version centos7-cuda-torchnightly
     # python get-pip.py
     # rm get-pip.py
 
+    # Using the app area to store software:
+    mkdir /app
+    cd /app
+
+    scl enable devtoolset-4 bash
+    # Install the necessary hash functions:
+    git clone https://github.com/sparsehash/sparsehash.git
+    cd sparsehash
+    ./configure
+    make -j install
 
 
 

@@ -74,7 +74,7 @@ Version centos7-cuda-torchnightly-SCN-mpich3.2.1
     ldconfig /usr/local/cuda/lib64/stubs
 
     # install Horovod, add other HOROVOD_* environment variables as necessary
-    HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_WITH_TENSORFLOW=1 HOROVOD_NCCL_HOME=/nccl/build/ pip install --no-cache-dir horovod
+    HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_WITH_PYTORCH=1 HOROVOD_NCCL_HOME=/nccl/build/ pip install --no-cache-dir horovod
 
     # revert to standard libraries
     ldconfig
