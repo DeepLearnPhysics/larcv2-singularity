@@ -44,7 +44,6 @@ Version centos7-cuda-torchnightly
     yum install -y wget emacs vim 
     yum install -y emacs vim openssh-clients zip 
     yum install -y python-devel python-pip  python-setuptools
-    yum install -y hdf5
 
 
     # pip basics
