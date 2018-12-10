@@ -28,6 +28,8 @@ Version centos7-cuda-torchnightly-SCN
 %environment
     
 %post
+
+    scl enable devtoolset-7 bash
     
     # Using the app area to store software:
     mkdir /app
