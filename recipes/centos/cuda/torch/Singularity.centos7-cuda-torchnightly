@@ -44,7 +44,13 @@ Version centos7-cuda-torchnightly
     # source scl_source enable devtoolset-7
     yum install -y wget emacs vim 
     yum install -y emacs vim openssh-clients zip 
-    yum install -y python-devel python-pip  python-setuptools
+    yum install -y python-devel python-setuptools
+    # Install pip:
+    curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+    python get-pip.py
+    rm get-pip.py
+
+
 
 #
 #    # pip basics
