@@ -30,6 +30,8 @@ Version centos7-mkldnn-tf1.11.0-torch0.4.1
     yum update -y
     yum groupinstall -y "Development Tools"
     yum install -y epel-release
+    yum install -y centos-release-scl
+    yum install -y devtoolset-4
     yum install -y wget emacs vim 
     yum install -y PyQt4 PyQt4-devel
     yum install -y emacs vim openssh-clients zip 
