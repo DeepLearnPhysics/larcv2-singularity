@@ -25,5 +25,4 @@ Version ub16.04-tf1.12.0-root6.14.06
 %environment
     export XDG_RUNTIME_DIR=/tmp/$USER
     export CUDA_DEVICE_ORDER=PCI_BUS_ID
-%post
-    chmod 744 /usr/lib/python2.7/dist-packages/.wh*
+
