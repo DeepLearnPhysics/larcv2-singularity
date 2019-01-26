@@ -129,5 +129,5 @@ pip --no-cache-dir --disable-pip-version-check install torch_nightly==1.0.0.dev2
 ldconfig /usr/local/cuda/lib64/stubs
 
 # scn
-pip --no-cache-dir --disable-pip-version-check install --extra-index-url https://test.pypi.org/simple scn-cuda10=="0.2.2018.1015"
+pip --no-cache-dir --disable-pip-version-check install --extra-index-url https://test.pypi.org/simple scn-cuda9=="0.2.2018.1015"
 
