@@ -1,9 +1,9 @@
 Bootstrap: docker
-From: nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+From: nvidia/cuda:10.0-cudnn7-devel-ubuntu16.04
 
 %help
-Ubuntu16.04 with cuda9.0 cudnn7
-ML/DL packages  : pytorch (1.0.0=dev20181015) sc-learn
+Ubuntu16.04 with cuda10.0 cudnn7
+ML/DL packages  : pytorch (1.0.0=dev20181215) sc-learn
 Sci.  packages  : numpy pandas sc-image matplotlib opencv-python root root_numpy
                   plotly cufflinks osfclient
 Basic python    : ipython jupyter yaml pygments six zmq wheel h5py tqdm
@@ -18,7 +18,7 @@ singularity exec --nv THIS_CONTAINER.simg bash
 
 %labels
 Maintainer drinkingkazu
-Version ub16.04-cuda90-pytorchdev20181015-root6.14.04
+Version ub16.04-cuda100-pytorchdev20181215
 
 #------------
 # Global installation
@@ -125,9 +125,10 @@ mkdir -p $LARCV_BINDIR
 make -j4
 
 # pytorch
-pip --no-cache-dir --disable-pip-version-check install torch_nightly==1.0.0.dev20181015 -f https://download.pytorch.org/whl/nightly/cu90/torch_nightly.html
+pip --no-cache-dir --disable-pip-version-check install torch_nightly==1.0.0.dev20181215 -f https://download.pytorch.org/whl/nightly/cu100/torch_nightly.html
 ldconfig /usr/local/cuda/lib64/stubs
 
 # scn
-pip --no-cache-dir --disable-pip-version-check install --extra-index-url https://test.pypi.org/simple scn-cuda10=="0.2.20181015"
+pip --no-cache-dir --disable-pip-version-check install --extra-index-url https://test.pypi.org/simple scn-cuda10=="0.2.20181218"
+
 
