@@ -35,7 +35,7 @@ Version ub16.04-cuda100-pytorchdev20181215
 
 %post
 apt-get -y update
-apt-get -y install zsh dpkg-dev g++ gcc binutils libqt4-dev git wget emacs vim openssh-client
+apt-get -y install zsh dpkg-dev g++ gcc binutils libqt4-dev git wget emacs vim openssh-client curl 
 apt-get -y install python-dev python-tk python-pip python-qt4 python-setuptools libsparsehash-dev python3-setuptools libhdf5-dev
 
 # asciinema
@@ -57,7 +57,7 @@ apt-get -y install asciinema
 #export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
 
 # pip basics
-#pip --no-cache-dir --disable-pip-version-check install --upgrade pip==9.0.3 
+pip --no-cache-dir --disable-pip-version-check install --upgrade pip==9.0.3 
 pip --no-cache-dir --disable-pip-version-check install --upgrade
 pip --no-cache-dir --disable-pip-version-check install --upgrade setuptools 
 pip --no-cache-dir --disable-pip-version-check install 'matplotlib<3.0' 
@@ -77,17 +77,19 @@ pip --no-cache-dir --disable-pip-version-check install osfclient
 mkdir -p /app
 
 # pytorch
-#pip --no-cache-dir --disable-pip-version-check install torch_nightly==1.0.0.dev20181215 -f https://download.pytorch.org/whl/nightly/cu100/torch_nightly.html
-#ldconfig /usr/local/cuda/lib64/stubs
-
-pip --no-cache-dir --disable-pip-version-check install https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp27-cp27mu-linux_x86_64.whl
+pip --no-cache-dir --disable-pip-version-check install https://download.pytorch.org/whl/cu90/torch-1.0.1.post2-cp27-cp27mu-linux_x86_64.whl
 pip --no-cache-dir --disable-pip-version-check install torchvision
+#pip --no-cache-dir --disable-pip-version-check install torch torchvision
+
+#pip --no-cache-dir --disable-pip-version-check install https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp27-cp27mu-linux_x86_64.whl
+#pip --no-cache-dir --disable-pip-version-check install torchvision
 
 # scn
 #pip --no-cache-dir --disable-pip-version-check install --extra-index-url https://test.pypi.org/simple scn-cuda10=="0.2.2018.1218"
 cd /app
 git clone https://github.com/facebookresearch/SparseConvNet
 cd SparseConvNet
+git checkout dcd1428dcc769d175734260764eeadf160593335
 python setup.py install
 
 
