@@ -1,12 +1,12 @@
 Bootstrap: docker
-From: deeplearnphysics/larcv2:ub18.04-gpu-ana0-ml
+From: deeplearnphysics/larcv2:ub18.04-gpu-ana0-ml-larcv2
 
 %help
 Ubuntu18.04 with root 6.16.00
 
 %labels
 Maintainer drinkingkazu
-Version ub18.04-gpu-ana0-ml
+Version ub18.04-gpu-ana0-ml-larcv2
 
 #------------
 # Global installation
