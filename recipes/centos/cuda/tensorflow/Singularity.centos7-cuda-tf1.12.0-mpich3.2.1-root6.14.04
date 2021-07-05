@@ -1,0 +1,49 @@
+#Bootstrap: shub
+#From: coreyjadams/larcv2-singularity:centos7-tf1.12.0
+
+Bootstrap: localimage
+From: /home/cadams/DeepLearnPhysics/larcv2-singularity/centos7-tf1.12.0
+
+
+%help
+Centos7 with cuda9.0 cudnn7
+ML/DL packages  : tensorflow keras sc-learn nccl
+Sci.  packages  : numpy pandas sc-image matplotlib opencv-python ROOT
+Basic python    : ipython jupyter yaml pygments six zmq wheel h5py tqdm mpi4py horovod
+Development kit : g++/gcc cython nvcc libqt4-dev python-dev
+Utility kit     : git wget emacs vim openssh-client mpich
+
+To start your container simply try
+singularity exec THIS_CONTAINER.simg bash
+
+To use GPUs, try
+singularity exec --nv THIS_CONTAINER.simg bash
+
+%labels
+Maintainer coreyjadams
+Version centos7-tf1.11.0-torch0.4.1-mpich3.2.1
+
+#------------
+# Global installation
+#------------
+%environment
+ 
+    # for ROOT
+    export ROOTSYS=/usr/local/root
+    export PATH=${ROOTSYS}/bin:${PATH}
+    export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
+    export LD_LIBRARY_PATH=/usr/local/root/lib/:${LD_LIBRARY_PATH}
+
+%post
+
+    # ROOT
+    wget https://root.cern.ch/download/root_v6.14.04.Linux-centos7-x86_64-gcc4.8.tar.gz
+    tar -xzf root_v6.14.04.Linux-centos7-x86_64-gcc4.8.tar.gz
+    rm root_v6.14.04.Linux-centos7-x86_64-gcc4.8.tar.gz
+    mv root /usr/local/root
+    export ROOTSYS=/usr/local/root
+    export PATH=${ROOTSYS}/bin:${PATH}
+    export LD_LIBRARY_PATH=${ROOTSYS}/lib:${LD_LIBRARY_PATH}
+    export PYTHONPATH=${ROOTSYS}/lib:${PYTHONPATH}
+
+
